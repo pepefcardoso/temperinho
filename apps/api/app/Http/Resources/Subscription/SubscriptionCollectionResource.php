@@ -1,0 +1,16 @@
+<?php
+
+namespace App\Http\Resources\Subscription;
+
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\ResourceCollection;
+
+class SubscriptionCollectionResource extends ResourceCollection
+{
+    public $collects = SubscriptionResource::class;
+
+    public function toArray(Request $request): array
+    {
+        return parent::toArray($request);
+    }
+}

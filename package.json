@@ -1,0 +1,16 @@
+{
+  "name": "temperinho",
+  "private": true,
+  "packageManager": "pnpm@9.15.0",
+  "scripts": {
+    "dev": "turbo run dev",
+    "dev:front": "turbo run dev --filter=temperinho-front",
+    "dev:admin": "turbo run dev --filter=temperinho-admin",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "test": "turbo run test"
+  },
+  "devDependencies": {
+    "turbo": "^2.3.0"
+  }
+}

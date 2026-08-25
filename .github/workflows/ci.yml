@@ -1,0 +1,58 @@
+name: CI
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  detect-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      front: ${{ steps.filter.outputs.front }}
+      admin: ${{ steps.filter.outputs.admin }}
+      api: ${{ steps.filter.outputs.api }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            front:
+              - 'apps/front/**'
+            admin:
+              - 'apps/admin/**'
+            api:
+              - 'apps/api/**'
+
+  node-apps:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.front == 'true' || needs.detect-changes.outputs.admin == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm turbo run lint build test
+
+  api:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.api == 'true'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/api
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.2
+      - run: composer install --no-interaction --prefer-dist
+      - run: cp .env.test .env
+      - run: php artisan key:generate
+      - run: php artisan test

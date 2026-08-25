@@ -1,0 +1,22 @@
+# Ignore o Git e seus próprios arquivos
+.git
+.gitignore
+.dockerignore
+
+# Ignore dependências do Composer e do Node
+vendor/
+node_modules/
+
+# Ignore arquivos de cache do Laravel que podem conter
+# informações do ambiente de desenvolvimento.
+bootstrap/cache/*.php
+
+# Ignore o arquivo de ambiente local. Ele é montado como um volume.
+.env
+
+# Ignore os logs
+storage/logs
+
+# Código de IDEs
+.idea/
+.vscode/

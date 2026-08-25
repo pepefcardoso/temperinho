@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: hsl(30 40% 98%);
+  --color-foreground: hsl(30 20% 15%);
+  --color-card: hsl(30 40% 98%);
+  --color-card-foreground: hsl(30 20% 15%);
+  --color-popover: hsl(30 40% 98%);
+  --color-popover-foreground: hsl(30 20% 15%);
+  --color-primary: hsl(159 30% 35%);
+  --color-primary-foreground: hsl(30 40% 98%);
+  --color-secondary: hsl(25 35% 85%);
+  --color-secondary-foreground: hsl(30 20% 15%);
+  --color-muted: hsl(25 30% 90%);
+  --color-muted-foreground: hsl(30 10% 40%);
+  --color-accent: hsl(24 70% 55%);
+  --color-accent-foreground: hsl(30 40% 98%);
+  --color-destructive: hsl(0 70% 45%);
+  --color-destructive-foreground: hsl(210 40% 98%);
+  --color-border: hsl(25 20% 85%);
+  --color-input: hsl(25 20% 85%);
+  --color-ring: hsl(159 30% 35%);
+  --color-sage-50: hsl(95 25% 95%);
+  --color-sage-100: hsl(95 25% 90%);
+  --color-sage-200: hsl(95 25% 80%);
+  --color-sage-300: hsl(95 25% 70%);
+  --color-sage-400: hsl(95 20% 60%);
+  --color-sage-500: hsl(95 20% 50%);
+  --color-sage-600: hsl(95 25% 40%);
+  --color-sage-700: hsl(95 30% 30%);
+  --color-sage-800: hsl(95 35% 20%);
+  --color-sage-900: hsl(95 40% 10%);
+  --color-warm-50: hsl(30 20% 95%);
+  --color-warm-100: hsl(30 20% 90%);
+  --color-warm-200: hsl(30 15% 85%);
+  --color-warm-300: hsl(30 15% 75%);
+  --color-warm-400: hsl(30 15% 65%);
+  --color-warm-500: hsl(30 10% 55%);
+  --color-warm-700: hsl(30 10% 40%);
+  --color-warm-800: hsl(30 15% 25%);
+  --color-warm-900: hsl(30 20% 15%);
+  --color-sunset-500: hsl(24 90% 60%);
+  --color-sunset-600: hsl(20 90% 55%);
+  --color-sidebar-background: hsl(30 35% 95%);
+  --color-sidebar-foreground: hsl(30 15% 25%);
+  --color-sidebar-primary: hsl(159 30% 35%);
+  --color-sidebar-primary-foreground: hsl(30 40% 98%);
+  --color-sidebar-accent: hsl(25 25% 88%);
+  --color-sidebar-accent-foreground: hsl(30 15% 25%);
+  --color-sidebar-border: hsl(25 20% 82%);
+  --color-sidebar-ring: hsl(159 30% 35%);
+  --radius-lg: 0.75rem;
+  --radius-md: calc(0.75rem - 2px);
+  --radius-sm: calc(0.75rem - 4px);
+}
+
+@layer base {
+  .dark {
+    --color-background: hsl(30 15% 8%);
+    --color-foreground: hsl(30 30% 92%);
+    --color-card: hsl(30 15% 10%);
+    --color-card-foreground: hsl(30 30% 92%);
+    --color-popover: hsl(30 15% 8%);
+    --color-popover-foreground: hsl(30 30% 92%);
+    --color-primary: hsl(159 40% 65%);
+    --color-primary-foreground: hsl(30 15% 8%);
+    --color-secondary: hsl(30 10% 15%);
+    --color-secondary-foreground: hsl(30 30% 92%);
+    --color-muted: hsl(30 10% 12%);
+    --color-muted-foreground: hsl(30 15% 65%);
+    --color-accent: hsl(24 60% 60%);
+    --color-accent-foreground: hsl(30 15% 8%);
+    --color-destructive: hsl(0 62.8% 30.6%);
+    --color-destructive-foreground: hsl(210 40% 98%);
+    --color-border: hsl(30 10% 18%);
+    --color-input: hsl(30 10% 18%);
+    --color-ring: hsl(159 40% 65%);
+    --color-sage-50: hsl(95 10% 15%);
+    --color-sage-100: hsl(95 10% 20%);
+    --color-sage-600: hsl(95 20% 60%);
+    --color-sage-700: hsl(95 25% 70%);
+    --color-warm-100: hsl(30 5% 85%);
+    --color-warm-300: hsl(30 5% 65%);
+    --color-warm-800: hsl(30 10% 18%);
+    --color-warm-900: hsl(30 10% 10%);
+    --color-sunset-500: hsl(24 90% 65%);
+    --color-sunset-600: hsl(20 90% 60%);
+    --color-sidebar-background: hsl(30 10% 5%);
+    --color-sidebar-foreground: hsl(30 25% 85%);
+    --color-sidebar-primary: hsl(159 40% 65%);
+    --color-sidebar-primary-foreground: hsl(30 10% 5%);
+    --color-sidebar-accent: hsl(30 8% 12%);
+    --color-sidebar-accent-foreground: hsl(30 25% 85%);
+    --color-sidebar-border: hsl(30 8% 15%);
+    --color-sidebar-ring: hsl(159 40% 65%);
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+
+  .font-display {
+    font-family: "Playfair Display", serif;
+  }
+}

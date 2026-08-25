@@ -1,0 +1,18 @@
+# docker-compose.yml
+version: '3.8'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile # Podemos reutilizar o mesmo Dockerfile
+    ports:
+      - '3000:3000'
+    volumes:
+      # Monta o código local no container para hot-reload
+      - .:/app
+      # Evita que a pasta node_modules local sobrescreva a do container
+      - /app/node_modules
+    environment:
+      # Carrega as variáveis do seu arquivo .env.local
+      - NODE_ENV=development
+    command: npm run dev

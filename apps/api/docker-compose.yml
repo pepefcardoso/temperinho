@@ -1,0 +1,113 @@
+version: "3.8"
+
+services:
+    app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        image: temperinho-app:prod
+        container_name: temperinho-app-prod
+        restart: unless-stopped
+        working_dir: /var/www
+        volumes:
+            - ./.env:/var/www/.env
+            - storage_prod:/var/www/storage
+        networks:
+            - temperinho-network
+        depends_on:
+            - db
+            - meilisearch
+            - redis
+
+    nginx:
+        image: nginx:alpine
+        container_name: temperinho-nginx-prod
+        restart: unless-stopped
+        ports:
+            - "80:80"
+            - "443:443"
+        volumes:
+            - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+            - certbot-etc:/etc/letsencrypt
+            - webroot-certbot:/var/www/certbot
+        networks:
+            - temperinho-network
+        depends_on:
+            - app
+
+    db:
+        image: postgres:15-alpine
+        container_name: temperinho-db-prod
+        restart: unless-stopped
+        environment:
+            POSTGRES_DB: ${DB_DATABASE}
+            POSTGRES_USER: ${DB_USERNAME}
+            POSTGRES_PASSWORD: ${DB_PASSWORD}
+            PGDATA: /var/lib/postgresql/data/pgdata
+        volumes:
+            - pgdata_prod:/var/lib/postgresql/data
+        networks:
+            - temperinho-network
+
+    meilisearch:
+        image: getmeili/meilisearch:latest
+        container_name: temperinho-meili-prod
+        restart: unless-stopped
+        environment:
+            - MEILI_MASTER_KEY=${MEILISEARCH_KEY}
+            - MEILI_ENV=production
+        volumes:
+            - meilidata_prod:/data.ms
+        networks:
+            - temperinho-network
+
+    redis:
+        image: redis:alpine
+        container_name: temperinho-redis-prod
+        restart: unless-stopped
+        networks:
+            - temperinho-network
+
+    backup:
+        image: postgres:15-alpine
+        container_name: temperinho-backup
+        restart: on-failure:5
+        volumes:
+            - backup_volume:/backups
+        environment:
+            - PGHOST=db
+            - PGPORT=5432
+            - PGUSER=${DB_USERNAME}
+            - PGPASSWORD=${DB_PASSWORD}
+            - PGDATABASE=${DB_DATABASE}
+        command: >
+            bash -c 'pg_dump -Fc -f /backups/backup-$$(date +%Y-%m-%d-%H%M%S).dump $${PGDATABASE}'
+        networks:
+            - temperinho-network
+        depends_on:
+            - db
+
+    certbot:
+        image: certbot/certbot
+        container_name: temperinho-certbot
+        volumes:
+            - certbot-etc:/etc/letsencrypt
+            - webroot-certbot:/var/www/certbot
+        command: certonly --webroot --webroot-path=/var/www/certbot --email admin@temperinho.com --agree-tos --no-eff-email -d api.temperinho.com --force-renewal
+
+networks:
+    temperinho-network:
+        driver: bridge
+
+volumes:
+    storage_prod:
+    pgdata_prod:
+        name: temperinho-pgdata
+        driver: local
+    meilidata_prod:
+        driver: local
+    backup_volume:
+        name: temperinho-backups
+    certbot-etc:
+    certbot-var:
+    webroot-certbot:

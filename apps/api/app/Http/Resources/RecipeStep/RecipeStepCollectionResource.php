@@ -1,0 +1,14 @@
+<?php
+
+namespace App\Http\Resources\RecipeStep;
+
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
+
+class RecipeStepCollectionResource extends JsonResource
+{
+    public function toArray(Request $request): array
+    {
+        return ['order' => $this->order, 'description' => $this->description];
+    }
+}

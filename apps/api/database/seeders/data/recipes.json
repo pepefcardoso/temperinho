@@ -1,0 +1,839 @@
+[
+    {
+        "details": {
+            "title": "Pão de Queijo de Tapioca",
+            "description": "Um clássico brasileiro em uma versão super fácil, sem glúten e sem lactose, usando tapioca granulada, ovos e queijo vegetal. É um sucesso garantido para o lanche!",
+            "time": 45,
+            "portion": 4,
+            "difficulty": "facil"
+        },
+        "category_name": "Pães e fermentados",
+        "diet_names": ["Sem glúten", "Sem lactose", "Vegetariana"],
+        "ingredients": [
+            {
+                "name": "Tapioca granulada",
+                "quantity": 500,
+                "unit_name": "Grama"
+            },
+            {
+                "name": "Queijo vegetal ralado (tipo muçarela ou parmesão)",
+                "quantity": 200,
+                "unit_name": "Grama"
+            },
+            {
+                "name": "Água fervente",
+                "quantity": 2,
+                "unit_name": "Xícara de chá"
+            },
+            {
+                "name": "Ovo",
+                "quantity": 2,
+                "unit_name": "Unidade"
+            },
+            {
+                "name": "Azeite de oliva",
+                "quantity": 0.5,
+                "unit_name": "Xícara de chá"
+            },
+            {
+                "name": "Sal",
+                "quantity": 1,
+                "unit_name": "Colher de chá"
+            }
+        ],
+        "steps": [
+            {
+                "order": 1,
+                "description": "Em uma tigela grande, misture a tapioca granulada e o sal. Despeje a água fervente e o azeite por cima, mexendo rapidamente para hidratar uniformemente. Deixe descansar por 10 a 15 minutos até a mistura amornar e firmar."
+            },
+            {
+                "order": 2,
+                "description": "Preaqueça o forno a 200°C e prepare uma assadeira com papel manteiga ou untando-a levemente."
+            },
+            {
+                "order": 3,
+                "description": "Após o tempo de descanso, adicione o queijo vegetal ralado à massa e misture bem para incorporar."
+            },
+            {
+                "order": 4,
+                "description": "Adicione os ovos, um de cada vez, sovando a massa com as mãos após cada adição até que fique homogênea e macia. A consistência deve permitir modelar."
+            },
+            {
+                "order": 5,
+                "description": "Com as mãos levemente untadas com azeite, pegue pequenas porções da massa e enrole para formar bolinhas do tamanho desejado."
+            },
+            {
+                "order": 6,
+                "description": "Distribua as bolinhas na assadeira preparada, deixando um pequeno espaço entre elas para que possam crescer."
+            },
+            {
+                "order": 7,
+                "description": "Leve ao forno preaquecido e asse por cerca de 25 a 30 minutos, ou até que os pães de queijo estejam dourados e inflados. Sirva quente."
+            }
+        ]
+    },
+    {
+        "details": {
+            "title": "Panqueca de Banana com Aveia",
+            "description": "Uma receita de café da manhã que viralizou na internet. Leva basicamente banana amassada, ovo e aveia (sem glúten). Simples, rápida e deliciosa.",
+            "time": 10,
+            "portion": 1,
+            "difficulty": "facil"
+        },
+        "category_name": "Dietéticas e funcionais",
+        "diet_names": [
+            "Sem glúten",
+            "Sem lactose",
+            "Sem açúcar refinado",
+            "Vegetariana"
+        ],
+        "ingredients": [
+            {
+                "name": "Banana nanica madura",
+                "quantity": 1,
+                "unit_name": "Unidade"
+            },
+            {
+                "name": "Ovo",
+                "quantity": 1,
+                "unit_name": "Unidade"
+            },
+            {
+                "name": "Aveia em flocos finos (certificada sem glúten)",
+                "quantity": 2,
+                "unit_name": "Colher de sopa"
+            },
+            {
+                "name": "Fermento em pó",
+                "quantity": 0.5,
+                "unit_name": "Colher de chá"
+            },
+            {
+                "name": "Canela em pó",
+                "quantity": 1,
+                "unit_name": "Pitada"
+            },
+            {
+                "name": "Óleo de coco para untar",
+                "quantity": 1,
+                "unit_name": "Colher de chá"
+            }
+        ],
+        "steps": [
+            {
+                "order": 1,
+                "description": "Em um prato fundo ou tigela, amasse a banana com um garfo até formar um purê liso."
+            },
+            {
+                "order": 2,
+                "description": "Adicione o ovo ao purê de banana e bata bem com o garfo até que a mistura esteja bem incorporada e aerada."
+            },
+            {
+                "order": 3,
+                "description": "Incorpore a aveia em flocos, a canela em pó e o fermento. Misture delicadamente até obter uma massa homogênea."
+            },
+            {
+                "order": 4,
+                "description": "Aqueça uma frigideira antiaderente em fogo médio-baixo e unte com o óleo de coco."
+            },
+            {
+                "order": 5,
+                "description": "Despeje pequenas porções da massa na frigideira, formando discos de panqueca. Cozinhe por cerca de 2 minutos ou até que bolhas comecem a se formar na superfície."
+            },
+            {
+                "order": 6,
+                "description": "Vire as panquecas com cuidado e cozinhe por mais 1-2 minutos do outro lado, até que estejam douradas e cozidas por dentro."
+            },
+            {
+                "order": 7,
+                "description": "Transfira para um prato e sirva imediatamente. Pode ser acompanhada de frutas frescas, melado de cana ou pasta de amendoim."
+            }
+        ]
+    },
+    {
+        "details": {
+            "title": "Bolo de Cenoura de Liquidificador (Versão Funcional)",
+            "description": "Uma releitura do clássico bolo de cenoura, adaptado para ser sem glúten e sem lactose. Fofinho, saboroso e com uma calda de chocolate funcional para comer sem culpa.",
+            "time": 50,
+            "portion": 10,
+            "difficulty": "facil"
+        },
+        "category_name": "Bolos e tortas",
+        "diet_names": [
+            "Sem glúten",
+            "Sem lactose",
+            "Sem açúcar refinado",
+            "Vegetariana"
+        ],
+        "ingredients": [
+            { "name": "Cenoura", "quantity": 3, "unit_name": "Unidade" },
+            { "name": "Ovo", "quantity": 3, "unit_name": "Unidade" },
+            {
+                "name": "Óleo de coco",
+                "quantity": 0.5,
+                "unit_name": "Xícara de chá"
+            },
+            {
+                "name": "Açúcar demerara",
+                "quantity": 1,
+                "unit_name": "Xícara de chá"
+            },
+            {
+                "name": "Farinha de arroz",
+                "quantity": 1.5,
+                "unit_name": "Xícara de chá"
+            },
+            {
+                "name": "Amido de milho",
+                "quantity": 0.5,
+                "unit_name": "Xícara de chá"
+            },
+            {
+                "name": "Fermento em pó",
+                "quantity": 1,
+                "unit_name": "Colher de sopa"
+            },
+            {
+                "name": "Leite de amêndoas",
+                "quantity": 4,
+                "unit_name": "Colher de sopa"
+            },
+            {
+                "name": "Cacau em pó 100%",
+                "quantity": 3,
+                "unit_name": "Colher de sopa"
+            },
+            {
+                "name": "Açúcar demerara para a calda",
+                "quantity": 3,
+                "unit_name": "Colher de sopa"
+            }
+        ],
+        "steps": [
+            {
+                "order": 1,
+                "description": "Pré-aqueça o forno a 180°C. Unte uma forma de bolo com óleo de coco e polvilhe farinha de arroz."
+            },
+            {
+                "order": 2,
+                "description": "No liquidificador, bata as cenouras picadas, os ovos, o óleo de coco e o açúcar demerara até obter uma mistura homogênea."
+            },
+            {
+                "order": 3,
+                "description": "Em uma tigela grande, peneire e misture a farinha de arroz, o amido de milho e o fermento em pó."
+            },
+            {
+                "order": 4,
+                "description": "Despeje a mistura líquida do liquidificador sobre os ingredientes secos e incorpore delicadamente com uma espátula até a massa ficar uniforme."
+            },
+            {
+                "order": 5,
+                "description": "Transfira a massa para a forma preparada e leve ao forno por aproximadamente 35-40 minutos, ou até que um palito inserido no centro saia limpo."
+            },
+            {
+                "order": 6,
+                "description": "Enquanto o bolo assa, prepare a calda. Em uma panela pequena, misture o leite de amêndoas, o cacau em pó e o açúcar demerara para a calda."
+            },
+            {
+                "order": 7,
+                "description": "Leve ao fogo baixo, mexendo constantemente, até a calda engrossar levemente, o que deve levar cerca de 5 minutos."
+            },
+            {
+                "order": 8,
+                "description": "Retire o bolo do forno e espere amornar para desenformar."
+            },
+            {
+                "order": 9,
+                "description": "Cubra o bolo com a calda de chocolate ainda morna e sirva."
+            }
+        ]
+    },
+    {
+        "details": {
+            "title": "Escondidinho de Mandioca com Carne Seca (Sem Lactose)",
+            "description": "Um clássico da culinária brasileira em sua versão sem lactose. O purê cremoso de mandioca cobre um recheio suculento de carne seca, criando uma refeição reconfortante e cheia de sabor.",
+            "time": 70,
+            "portion": 4,
+            "difficulty": "medio"
+        },
+        "category_name": "Pratos principais",
+        "diet_names": ["Sem lactose", "Sem glúten"],
+        "ingredients": [
+            {
+                "name": "Mandioca (aipim/macaxeira)",
+                "quantity": 1,
+                "unit_name": "Quilograma"
+            },
+            {
+                "name": "Carne seca dessalgada e desfiada",
+                "quantity": 500,
+                "unit_name": "Grama"
+            },
+            { "name": "Cebola picada", "quantity": 1, "unit_name": "Unidade" },
+            { "name": "Alho picado", "quantity": 3, "unit_name": "Unidade" },
+            {
+                "name": "Tomate sem sementes picado",
+                "quantity": 2,
+                "unit_name": "Unidade"
+            },
+            {
+                "name": "Azeite de oliva",
+                "quantity": 4,
+                "unit_name": "Colher de sopa"
+            },
+            {
+                "name": "Leite de coco",
+                "quantity": 200,
+                "unit_name": "Mililitro"
+            },
+            {
+                "name": "Cheiro-verde (salsinha e cebolinha)",
+                "quantity": 1,
+                "unit_name": "Punhado"
+            },
+            { "name": "Sal", "quantity": 1, "unit_name": "Pitada" },
+            { "name": "Pimenta do reino", "quantity": 1, "unit_name": "Pitada" }
+        ],
+        "steps": [
+            {
+                "order": 1,
+                "description": "Cozinhe a mandioca em água com sal até ficar bem macia, a ponto de desmanchar. Escorra a água e remova os fios centrais."
+            },
+            {
+                "order": 2,
+                "description": "Enquanto a mandioca cozinha, prepare o recheio. Aqueça 2 colheres de sopa de azeite em uma panela e refogue a cebola e o alho até dourarem."
+            },
+            {
+                "order": 3,
+                "description": "Adicione a carne seca desfiada à panela e refogue por cerca de 10 minutos. Acrescente o tomate picado e cozinhe até que ele comece a desmanchar."
+            },
+            {
+                "order": 4,
+                "description": "Finalize o recheio com o cheiro-verde picado, pimenta do reino a gosto e reserve."
+            },
+            {
+                "order": 5,
+                "description": "Amasse a mandioca cozida com um garfo ou espremedor. Adicione o leite de coco, as 2 colheres de sopa de azeite restantes e misture bem até formar um purê cremoso. Ajuste o sal se necessário."
+            },
+            {
+                "order": 6,
+                "description": "Pré-aqueça o forno a 200°C."
+            },
+            {
+                "order": 7,
+                "description": "Em um refratário, espalhe metade do purê de mandioca no fundo."
+            },
+            {
+                "order": 8,
+                "description": "Distribua todo o recheio de carne seca sobre a camada de purê."
+            },
+            {
+                "order": 9,
+                "description": "Cubra o recheio com o restante do purê, alisando a superfície com uma colher."
+            },
+            {
+                "order": 10,
+                "description": "Leve ao forno por cerca de 20-25 minutos, ou até que a superfície esteja levemente dourada e o prato borbulhando."
+            }
+        ]
+    },
+    {
+        "details": {
+            "title": "Salmão ao Forno com Ervas e Limão",
+            "description": "Uma receita simples e elegante para um jantar rápido e saudável, com o sabor fresco de ervas e limão, naturalmente livre de glúten e lactose.",
+            "time": 30,
+            "portion": 2,
+            "difficulty": "facil"
+        },
+        "category_name": "Pratos principais",
+        "diet_names": [
+            "Pescetariana",
+            "Low-Carb",
+            "Sem glúten",
+            "Sem lactose",
+            "Diabéticos"
+        ],
+        "ingredients": [
+            {
+                "name": "Filé de salmão",
+                "quantity": 300,
+                "unit_name": "Grama"
+            },
+            {
+                "name": "Limão siciliano",
+                "quantity": 1,
+                "unit_name": "Unidade"
+            },
+            {
+                "name": "Azeite de oliva extravirgem",
+                "quantity": 2,
+                "unit_name": "Colher de sopa"
+            },
+            {
+                "name": "Endro (dill) fresco",
+                "quantity": 2,
+                "unit_name": "Ramo"
+            },
+            {
+                "name": "Sal",
+                "quantity": 1,
+                "unit_name": "Pitada"
+            },
+            {
+                "name": "Pimenta do reino moída",
+                "quantity": 1,
+                "unit_name": "Pitada"
+            }
+        ],
+        "steps": [
+            {
+                "order": 1,
+                "description": "Preaqueça o forno a 200°C e forre uma assadeira com papel manteiga ou papel alumínio."
+            },
+            {
+                "order": 2,
+                "description": "Coloque os filés de salmão na assadeira preparada, com a pele para baixo, se houver."
+            },
+            {
+                "order": 3,
+                "description": "Regue os filés uniformemente com o azeite de oliva. Tempere com sal e pimenta do reino a gosto."
+            },
+            {
+                "order": 4,
+                "description": "Pique o endro fresco e espalhe sobre o salmão. Corte metade do limão em rodelas finas e distribua sobre os filés."
+            },
+            {
+                "order": 5,
+                "description": "Asse no forno preaquecido por 15 a 20 minutos, ou até que o salmão esteja cozido e se desfaça facilmente com um garfo."
+            },
+            {
+                "order": 6,
+                "description": "Retire do forno e, antes de servir, esprema o suco da outra metade do limão sobre o peixe para um sabor extra."
+            }
+        ]
+    },
+    {
+        "details": {
+            "title": "Frango Assado com Batata-Doce e Alecrim",
+            "description": "Um prato reconfortante e nutritivo que combina a suculência do frango com o adocicado da batata-doce e o aroma do alecrim. Simples, delicioso e alinhado com a dieta Paleo.",
+            "time": 60,
+            "portion": 4,
+            "difficulty": "facil"
+        },
+        "category_name": "Pratos principais",
+        "diet_names": ["Paleo", "Sem glúten", "Sem lactose", "Sem soja"],
+        "ingredients": [
+            {
+                "name": "Coxa e sobrecoxa de frango",
+                "quantity": 1,
+                "unit_name": "Quilograma"
+            },
+            {
+                "name": "Batata-doce",
+                "quantity": 700,
+                "unit_name": "Grama"
+            },
+            {
+                "name": "Azeite de oliva extravirgem",
+                "quantity": 3,
+                "unit_name": "Colher de sopa"
+            },
+            {
+                "name": "Alecrim fresco",
+                "quantity": 3,
+                "unit_name": "Ramo"
+            },
+            {
+                "name": "Dente de alho",
+                "quantity": 4,
+                "unit_name": "Unidade"
+            },
+            {
+                "name": "Sal",
+                "quantity": 1,
+                "unit_name": "Colher de chá"
+            },
+            {
+                "name": "Pimenta do reino moída",
+                "quantity": 0.5,
+                "unit_name": "Colher de chá"
+            }
+        ],
+        "steps": [
+            {
+                "order": 1,
+                "description": "Preaqueça o forno a 200°C."
+            },
+            {
+                "order": 2,
+                "description": "Lave, descasque e corte as batatas-doces em cubos de aproximadamente 2-3 cm. Amasse ou pique finamente os dentes de alho."
+            },
+            {
+                "order": 3,
+                "description": "Em uma tigela grande, adicione os pedaços de frango, a batata-doce, o alho, o azeite e as folhas de alecrim debulhadas dos ramos."
+            },
+            {
+                "order": 4,
+                "description": "Tempere com sal e pimenta do reino e misture tudo muito bem com as mãos, garantindo que todos os ingredientes fiquem cobertos pelo tempero."
+            },
+            {
+                "order": 5,
+                "description": "Disponha a mistura em uma única camada em uma assadeira grande. Evite sobrepor os ingredientes para que assem de forma uniforme."
+            },
+            {
+                "order": 6,
+                "description": "Leve ao forno por 45 a 50 minutos, ou até que o frango esteja bem cozido e dourado e as batatas-doces estejam macias e caramelizadas nas bordas."
+            },
+            {
+                "order": 7,
+                "description": "Retire do forno, deixe descansar por alguns minutos e sirva em seguida."
+            }
+        ]
+    },
+    {
+        "details": {
+            "title": "Sopa Cremosa de Abóbora e Cenoura",
+            "description": "Uma sopa cremosa e reconfortante, ideal para quem segue a dieta Low-FODMAP. Feita com abóbora, cenoura, um pouco de gengibre e a parte verde da cebolinha para dar sabor sem causar desconforto.",
+            "time": 40,
+            "portion": 4,
+            "difficulty": "facil"
+        },
+        "category_name": "Sopas e caldos",
+        "diet_names": [
+            "Low-FODMAP",
+            "Vegana",
+            "Sem glúten",
+            "Sem lactose",
+            "Sem soja"
+        ],
+        "ingredients": [
+            {
+                "name": "Abóbora kabocha descascada e picada",
+                "quantity": 500,
+                "unit_name": "Grama"
+            },
+            {
+                "name": "Cenoura descascada e picada",
+                "quantity": 2,
+                "unit_name": "Unidade"
+            },
+            {
+                "name": "Gengibre fresco ralado",
+                "quantity": 1,
+                "unit_name": "Colher de sopa"
+            },
+            {
+                "name": "Parte verde da cebolinha picada",
+                "quantity": 0.5,
+                "unit_name": "Xícara de chá"
+            },
+            {
+                "name": "Azeite de oliva extra virgem",
+                "quantity": 2,
+                "unit_name": "Colher de sopa"
+            },
+            {
+                "name": "Caldo de legumes caseiro (baixo FODMAP)",
+                "quantity": 1,
+                "unit_name": "Litro"
+            },
+            {
+                "name": "Sal",
+                "quantity": 1,
+                "unit_name": "Pitada"
+            },
+            {
+                "name": "Pimenta do reino moída na hora",
+                "quantity": 1,
+                "unit_name": "Pitada"
+            }
+        ],
+        "steps": [
+            {
+                "order": 1,
+                "description": "Em uma panela grande em fogo médio, aqueça o azeite de oliva. Adicione a parte verde da cebolinha e o gengibre ralado, refogando por cerca de 2 minutos até ficarem aromáticos."
+            },
+            {
+                "order": 2,
+                "description": "Adicione a abóbora e a cenoura picadas à panela. Tempere com sal e pimenta do reino a gosto e refogue por 5 minutos, mexendo ocasionalmente."
+            },
+            {
+                "order": 3,
+                "description": "Despeje o caldo de legumes caseiro na panela, garantindo que os vegetais fiquem completamente cobertos. Aumente o fogo e deixe ferver."
+            },
+            {
+                "order": 4,
+                "description": "Assim que ferver, reduza o fogo para o mínimo, tampe a panela e cozinhe por aproximadamente 20-25 minutos, ou até que a abóbora e a cenoura estejam bem macias."
+            },
+            {
+                "order": 5,
+                "description": "Com cuidado, transfira a sopa para um liquidificador ou use um mixer de mão na própria panela. Bata até obter um creme liso e homogêneo."
+            },
+            {
+                "order": 6,
+                "description": "Prove e ajuste o sal e a pimenta, se necessário. Sirva a sopa quente, decorada com um fio de azeite e mais cebolinha verde picada por cima."
+            }
+        ]
+    },
+    {
+        "details": {
+            "title": "Mousse de Chocolate com Abacate",
+            "description": "Uma sobremesa mágica que usa a cremosidade do abacate para criar um mousse aveludado, sem açúcar refinado e vegano. Perfeito para uma indulgência saudável e adequado para diabéticos.",
+            "time": 15,
+            "portion": 4,
+            "difficulty": "facil"
+        },
+        "category_name": "Sobremesas e doces",
+        "diet_names": [
+            "Vegana",
+            "Sem açúcar refinado",
+            "Diabéticos",
+            "Sem glúten",
+            "Sem lactose"
+        ],
+        "ingredients": [
+            {
+                "name": "Abacate maduro",
+                "quantity": 2,
+                "unit_name": "Unidade"
+            },
+            {
+                "name": "Cacau em pó 100%",
+                "quantity": 0.5,
+                "unit_name": "Xícara de chá"
+            },
+            {
+                "name": "Tâmaras Medjool sem caroço",
+                "quantity": 6,
+                "unit_name": "Unidade"
+            },
+            {
+                "name": "Leite de amêndoas (ou outro leite vegetal)",
+                "quantity": 3,
+                "unit_name": "Colher de sopa"
+            },
+            {
+                "name": "Extrato de baunilha",
+                "quantity": 1,
+                "unit_name": "Colher de chá"
+            },
+            {
+                "name": "Sal",
+                "quantity": 1,
+                "unit_name": "Pitada"
+            }
+        ],
+        "steps": [
+            {
+                "order": 1,
+                "description": "Se as tâmaras estiverem secas, coloque-as em uma tigela, cubra com água quente e deixe de molho por 10 minutos para amolecer. Em seguida, escorra bem."
+            },
+            {
+                "order": 2,
+                "description": "Em um processador de alimentos ou liquidificador de alta potência, adicione a polpa dos abacates, o cacau em pó, as tâmaras amolecidas e escorridas, o leite de amêndoas, o extrato de baunilha e a pitada de sal."
+            },
+            {
+                "order": 3,
+                "description": "Bata em velocidade alta por 1 a 2 minutos, parando para raspar as laterais do aparelho, se necessário, até a mistura ficar completamente lisa, cremosa e homogênea."
+            },
+            {
+                "order": 4,
+                "description": "Prove o mousse para ajustar o sabor. Se preferir mais doce, adicione mais uma ou duas tâmaras e bata novamente. Se a consistência estiver muito espessa, adicione mais uma colher de sopa de leite vegetal."
+            },
+            {
+                "order": 5,
+                "description": "Divida o mousse igualmente em 4 taças ou potes de sobremesa."
+            },
+            {
+                "order": 6,
+                "description": "Leve à geladeira por pelo menos 1 hora para firmar e gelar. O mousse ficará mais denso à medida que esfria."
+            },
+            {
+                "order": 7,
+                "description": "Sirva gelado. Se desejar, decore com frutas vermelhas frescas, lascas de coco ou raspas de chocolate amargo (acima de 70% cacau)."
+            }
+        ]
+    },
+    {
+        "details": {
+            "title": "Salpicão de Frango Funcional com Maionese de Castanha de Caju",
+            "description": "Uma releitura do clássico salpicão, utilizando uma maionese cremosa à base de castanha de caju, sem lactose e sem ovos. A batata palha caseira na airfryer garante a crocância de forma saudável.",
+            "time": 50,
+            "portion": 6,
+            "difficulty": "medio"
+        },
+        "category_name": "Saladas",
+        "diet_names": [
+            "Sem lactose",
+            "Sem glúten",
+            "Sem ovo",
+            "Sem açúcar refinado",
+            "Paleo"
+        ],
+        "ingredients": [
+            {
+                "name": "Peito de frango cozido e desfiado",
+                "quantity": 500,
+                "unit_name": "Grama"
+            },
+            {
+                "name": "Castanha de caju crua (deixada de molho em água quente por 30 min)",
+                "quantity": 1,
+                "unit_name": "Xícara de chá"
+            },
+            {
+                "name": "Cenoura grande ralada",
+                "quantity": 2,
+                "unit_name": "Unidade"
+            },
+            {
+                "name": "Milho verde cozido",
+                "quantity": 150,
+                "unit_name": "Grama"
+            },
+            {
+                "name": "Batata doce média",
+                "quantity": 2,
+                "unit_name": "Unidade"
+            },
+            {
+                "name": "Suco de limão fresco",
+                "quantity": 3,
+                "unit_name": "Colher de sopa"
+            },
+            {
+                "name": "Azeite de oliva extra virgem",
+                "quantity": 2,
+                "unit_name": "Colher de sopa"
+            },
+            {
+                "name": "Água filtrada (para a maionese)",
+                "quantity": 0.5,
+                "unit_name": "Xícara de chá"
+            },
+            {
+                "name": "Salsinha fresca picada",
+                "quantity": 4,
+                "unit_name": "Colher de sopa"
+            },
+            {
+                "name": "Sal",
+                "quantity": 1,
+                "unit_name": "Colher de chá"
+            },
+            {
+                "name": "Pimenta do reino moída",
+                "quantity": 1,
+                "unit_name": "Pitada"
+            }
+        ],
+        "steps": [
+            {
+                "order": 1,
+                "description": "Para a batata palha: descasque e rale as batatas doces no ralo grosso. Tempere com um fio de azeite e sal. Espalhe na cesta da airfryer e asse a 180°C por cerca de 15-20 minutos, mexendo na metade do tempo, até ficarem douradas e crocantes. Reserve."
+            },
+            {
+                "order": 2,
+                "description": "Para a maionese funcional: escorra as castanhas de caju e coloque-as em um liquidificador potente. Adicione o suco de limão, o azeite, o sal e metade da água."
+            },
+            {
+                "order": 3,
+                "description": "Bata em alta velocidade até obter um creme liso e homogêneo. Se necessário, adicione o restante da água aos poucos, até atingir a consistência de maionese. Prove e ajuste o sal e o limão se desejar."
+            },
+            {
+                "order": 4,
+                "description": "Em uma tigela grande, misture o frango desfiado, a cenoura ralada, o milho cozido e a salsinha picada."
+            },
+            {
+                "order": 5,
+                "description": "Incorpore a maionese de castanha de caju à mistura, envolvendo todos os ingredientes delicadamente até que esteja uniforme."
+            },
+            {
+                "order": 6,
+                "description": "Leve à geladeira por pelo menos 30 minutos para apurar os sabores e servir gelado."
+            },
+            {
+                "order": 7,
+                "description": "No momento de servir, finalize o salpicão espalhando a batata palha de batata doce caseira por cima para manter a crocância."
+            }
+        ]
+    },
+    {
+        "details": {
+            "title": "Cookies de Pasta de Amendoim (Vegano e Sem Glúten)",
+            "description": "Uma receita surpreendentemente fácil e rápida que usa apenas 3 ingredientes base para criar cookies macios, nutritivos e deliciosos. Ideal para quem tem múltiplas restrições alimentares.",
+            "time": 25,
+            "portion": 12,
+            "difficulty": "facil"
+        },
+        "category_name": "Biscoitos, cookies & bisnagas",
+        "diet_names": [
+            "Sem glúten",
+            "Vegana",
+            "Sem lactose",
+            "Sem ovo",
+            "Sem açúcar refinado"
+        ],
+        "ingredients": [
+            {
+                "name": "Pasta de amendoim integral e sem açúcar",
+                "quantity": 1,
+                "unit_name": "Xícara de chá"
+            },
+            {
+                "name": "Açúcar de coco",
+                "quantity": 0.75,
+                "unit_name": "Xícara de chá"
+            },
+            {
+                "name": "Semente de linhaça moída",
+                "quantity": 1,
+                "unit_name": "Colher de sopa"
+            },
+            {
+                "name": "Água",
+                "quantity": 3,
+                "unit_name": "Colher de sopa"
+            },
+            {
+                "name": "Extrato de baunilha",
+                "quantity": 1,
+                "unit_name": "Colher de chá"
+            }
+        ],
+        "steps": [
+            {
+                "order": 1,
+                "description": "Pré-aqueça o forno a 180°C. Forre uma assadeira com papel manteiga ou um tapete de silicone."
+            },
+            {
+                "order": 2,
+                "description": "Prepare o 'ovo' de linhaça: em uma tigela pequena, misture a semente de linhaça moída com a água. Deixe descansar por 5 a 10 minutos para engrossar e formar um gel."
+            },
+            {
+                "order": 3,
+                "description": "Em uma tigela média, adicione a pasta de amendoim, o açúcar de coco, o extrato de baunilha e o 'ovo' de linhaça já preparado."
+            },
+            {
+                "order": 4,
+                "description": "Misture bem com uma espátula ou colher até que a massa fique completamente homogênea e se solte das laterais da tigela."
+            },
+            {
+                "order": 5,
+                "description": "Com o auxílio de uma colher, pegue pequenas porções da massa e enrole-as formando bolinhas de aproximadamente 2,5 cm de diâmetro. Disponha as bolinhas na assadeira preparada, deixando um espaço entre elas."
+            },
+            {
+                "order": 6,
+                "description": "Com um garfo, pressione suavemente cada bolinha para achatá-la, primeiro em um sentido e depois no sentido oposto para criar um padrão quadriculado."
+            },
+            {
+                "order": 7,
+                "description": "Asse por 10 a 12 minutos, ou até que as bordas estejam levemente douradas. Os cookies parecerão macios ao sair do forno."
+            },
+            {
+                "order": 8,
+                "description": "Deixe os cookies esfriarem na assadeira por 5 minutos antes de transferi-los para uma grade para esfriarem completamente. Eles ficarão mais firmes à medida que esfriam."
+            }
+        ]
+    }
+]
