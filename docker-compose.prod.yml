@@ -115,10 +115,7 @@ services:
         NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL}
         NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL}
         NEXT_PUBLIC_URL: ${NEXT_PUBLIC_URL}
-        NEXT_PUBLIC_SENTRY_ORG: ${SENTRY_ORG}
-        NEXT_PUBLIC_SENTRY_PROJECT: ${FRONT_SENTRY_PROJECT}
-        NEXT_PUBLIC_SENTRY_DSN: ${FRONT_SENTRY_DSN}
-        SENTRY_AUTH_TOKEN: ${SENTRY_AUTH_TOKEN}
+
         NEXT_PUBLIC_GOOGLE_AD_CLIENT: ${NEXT_PUBLIC_GOOGLE_AD_CLIENT}
         NEXT_PUBLIC_GOOGLE_AD_SLOT_ABOUT_US: ${NEXT_PUBLIC_GOOGLE_AD_SLOT_ABOUT_US}
         NEXT_PUBLIC_GOOGLE_AD_SLOT_BLOG_DETAILS: ${NEXT_PUBLIC_GOOGLE_AD_SLOT_BLOG_DETAILS}
@@ -131,7 +128,7 @@ services:
     restart: unless-stopped
     environment:
       - NODE_ENV=production
-      - NEXT_PUBLIC_SENTRY_DSN=${FRONT_SENTRY_DSN}
+
     networks:
       - traefik-public
     mem_limit: 512m
@@ -157,7 +154,7 @@ services:
       - "traefik.http.middlewares.temperinho-headers.headers.contentTypeNosniff=true"
       - "traefik.http.middlewares.temperinho-headers.headers.browserXssFilter=true"
       - "traefik.http.middlewares.temperinho-headers.headers.referrerPolicy=strict-origin-when-cross-origin"
-      - "traefik.http.middlewares.temperinho-headers.headers.contentSecurityPolicy=default-src 'self'; img-src 'self' data: https:; script-src 'self' 'unsafe-inline' https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.google.com https://*.doubleclick.net https://*.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://*.google.com https://*.googlesyndication.com https://*.doubleclick.net https://*.sentry.io; frame-src https://*.googlesyndication.com https://*.google.com https://*.doubleclick.net"
+      - "traefik.http.middlewares.temperinho-headers.headers.contentSecurityPolicy=default-src 'self'; img-src 'self' data: https:; script-src 'self' 'unsafe-inline' https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.google.com https://*.doubleclick.net https://*.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://*.google.com https://*.googlesyndication.com https://*.doubleclick.net; frame-src https://*.googlesyndication.com https://*.google.com https://*.doubleclick.net"
 
   admin:
     build:
@@ -166,15 +163,13 @@ services:
         NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL}
         NEXT_PUBLIC_URL: ${NEXT_PUBLIC_ADMIN_URL}
         NEXT_PUBLIC_LARAVEL_BASE_URL: ${NEXT_PUBLIC_LARAVEL_BASE_URL}
-        NEXT_PUBLIC_SENTRY_DSN: ${ADMIN_SENTRY_DSN}
-        SENTRY_ORG: ${SENTRY_ORG}
-        SENTRY_AUTH_TOKEN: ${SENTRY_AUTH_TOKEN}
+
     container_name: temperinho-admin
     restart: unless-stopped
     environment:
       - NODE_ENV=production
       - NEXT_PUBLIC_LARAVEL_BASE_URL=${NEXT_PUBLIC_LARAVEL_BASE_URL}
-      - NEXT_PUBLIC_SENTRY_DSN=${ADMIN_SENTRY_DSN}
+
     networks:
       - traefik-public
     mem_limit: 512m

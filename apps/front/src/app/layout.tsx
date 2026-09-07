@@ -8,7 +8,7 @@ import { ThemeProvider } from "@/components/theme/theme-provider";
 import Header from "@/components/navigation/Header";
 import Footer from "@/components/navigation/Footer";
 import Script from 'next/script';
-import * as Sentry from '@sentry/nextjs';
+
 import AdSenseLoader from '@/components/marketing/AdSenseLoader';
 
 const inter = Inter({
@@ -29,9 +29,6 @@ export const metadata: Metadata = {
     template: '%s | Temperinho',
   },
   description: "Descubra receitas deliciosas para todos os gostos e restrições.",
-  other: {
-    ...Sentry.getTraceData(),
-  },
 };
 
 export default function RootLayout({

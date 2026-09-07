@@ -13,7 +13,7 @@ An inclusive cooking community needed a backend that could serve recipes and art
 | Cache      | Redis (cache, sessions, queues) |
 | Search     | Meilisearch via Laravel Scout |
 | Storage    | AWS S3 (Flysystem), AWS SES (mail) |
-| Monitoring | Sentry |
+| Monitoring | - |
 | Infra      | Docker Compose, Nginx, Certbot |
 
 ## Architecture

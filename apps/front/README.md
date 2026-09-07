@@ -11,7 +11,7 @@ An inclusive cooking community needed a public site that could rank well in sear
 | UI         | Radix UI, Tailwind CSS 4 (custom warm/sage theme), Framer Motion |
 | Forms      | React Hook Form 7 + Zod 3 |
 | Data       | Axios, js-cookie |
-| Monitoring | Sentry |
+| Monitoring | - |
 | Monetization | Google AdSense, CookieYes (LGPD consent) |
 | Infra      | Docker, CI/CD pipeline |
 
@@ -90,7 +90,7 @@ Available at `http://localhost:3000`.
 | `NEXT_PUBLIC_API_URL` | Base URL of the Temperinho API | `http://localhost:8000/api` | Yes |
 | `NEXT_PUBLIC_SITE_URL` | Public site URL (sitemap/robots) | `https://temperinho.com.br` | Yes |
 | `NEXT_PUBLIC_GOOGLE_AD_CLIENT` | Google AdSense client ID | `ca-pub-...` | No |
-| `SENTRY_DSN` | Sentry error monitoring | `https://...@sentry.io/...` | No |
+
 
 ## API Reference
 This app is a client of the Temperinho API — it has no routes of its own. See [`temperinho-api`](../temperinho-api) for the full endpoint reference and [`docs/api-documentation.md`](./docs/api-documentation.md) for how this frontend consumes it.

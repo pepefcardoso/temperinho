@@ -13,8 +13,7 @@
         "laravel/socialite": "^5.21",
         "league/flysystem-aws-s3-v3": "^3.29",
         "meilisearch/meilisearch-php": "^1.15",
-        "predis/predis": "^3.2",
-        "sentry/sentry-laravel": "*"
+        "predis/predis": "^3.2"
     },
     "require-dev": {
         "laravel/pint": "^1.13",

@@ -11,7 +11,7 @@ Managing users, companies, recipes, posts, subscriptions, and payments across a 
 | UI         | Radix UI primitives, Tailwind CSS 4, shadcn-style components |
 | Forms      | React Hook Form 7 + Zod 3 |
 | Data       | TanStack React Table 8, Axios, Zustand |
-| Monitoring | Sentry |
+| Monitoring | - |
 | Testing    | Vitest, Playwright (E2E) |
 | Infra      | Docker (Next.js standalone), Vercel-compatible |
 
@@ -110,7 +110,7 @@ docker run -p 3000:3000 \
 Full details in [`docs/deployment.md`](./docs/deployment.md).
 
 ## Conventions
-Project rules and constraints live in [`docs/testing.md`](./docs/testing.md) and [`docs/monitoring.md`](./docs/monitoring.md) — not duplicated here.
+Project rules and constraints live in [`docs/testing.md`](./docs/testing.md) — not duplicated here.
 
 ## License
 MIT

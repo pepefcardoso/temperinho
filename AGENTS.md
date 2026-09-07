@@ -54,7 +54,7 @@ docker compose up -d          # postgres, redis, meilisearch, api, front, admin
 | Search           | —                                    | —                                  | Meilisearch via Scout        |
 | Storage/mail     | —                                    | —                                  | S3 (Flysystem), SES          |
 | Tests            | none configured yet — lint only      | Vitest (unit), Playwright (E2E)    | PHPUnit (`php artisan test`) |
-| Monitoring       | Sentry                               | Sentry                             | Sentry                       |
+| Monitoring       | —                                    | —                                  | —                            |
 
 ## Conventions that matter
 
@@ -97,7 +97,7 @@ Each app has its own `.env` — never share one across apps.
 | App     | Key vars                                                                                                                                                  |
 | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `api`   | `APP_KEY`, `APP_FRONTEND_URL`, `DB_CONNECTION` (`sqlite` dev / `pgsql` prod), `REDIS_HOST`, `AWS_BUCKET`, `MEILISEARCH_HOST`, `GOOGLE_CLIENT_ID`/`SECRET` |
-| `front` | `NEXT_PUBLIC_API_URL`, `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_GOOGLE_AD_CLIENT`, `SENTRY_DSN`                                                               |
+| `front` | `NEXT_PUBLIC_API_URL`, `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_GOOGLE_AD_CLIENT`                                                               |
 | `admin` | `NEXT_PUBLIC_API_URL`, `NEXT_PUBLIC_URL`                                                                                                                  |
 
 `api` dev DB is SQLite (`database/database.sqlite`); prod is Postgres — don't assume Postgres-only SQL in local changes.

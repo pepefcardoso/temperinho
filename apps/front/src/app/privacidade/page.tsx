@@ -95,9 +95,7 @@ export default function PrivacyPage() {
                                 <li>
                                     <strong>Cookies de Análise (ou Desempenho):</strong> Nos ajudam a entender como os visitantes interagem com o site, coletando informações de forma anônima para monitorar e melhorar o desempenho técnico da nossa plataforma.
                                 </li>
-                                <li>
-                                    <strong>Monitoramento de Sessão e Erros:</strong> Condicionado ao seu consentimento para cookies de análise, utilizamos tecnologias de monitoramento (como o Sentry) que podem capturar reproduções comportamentais da sua sessão (session replay). Esses dados são utilizados estritamente para depuração técnica e correção de falhas de sistema. Para sua privacidade, todos os textos e mídias pessoais são completamente ocultados (mascarados) antes do envio.
-                                </li>
+
                                 <li>
                                     <strong>Cookies de Publicidade (ou Marketing):</strong> Usados para rastrear visitantes através de websites com a intenção de exibir anúncios que são relevantes e atraentes. Utilizamos o <strong>Google AdSense</strong> para viabilizar campanhas de publicidade comportamental e monetização da plataforma.
                                 </li>

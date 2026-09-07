@@ -1,4 +1,4 @@
-import { withSentryConfig } from '@sentry/nextjs';
+
 
 const securityHeaders = [
   {
@@ -47,18 +47,4 @@ const nextConfig = {
   },
 };
 
-export default withSentryConfig(nextConfig, {
-  org: process.env.NEXT_PUBLIC_SENTRY_ORG,
-  project: process.env.NEXT_PUBLIC_SENTRY_PROJECT,
-  silent: true,
-  widenClientFileUpload: true,
-  webpack: (config) => {
-    config.treeshake = config.treeshake || {};
-    config.treeshake.removeDebugLogging = true;
-    config.automaticVercelMonitors = true;
-    return config;
-  },
-  sourcemaps: {
-    disable: false,
-  },
-});
+export default nextConfig;
