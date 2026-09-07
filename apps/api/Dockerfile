@@ -29,12 +29,21 @@ RUN composer dump-autoload --no-dev --optimize
 # --- ESTÁGIO 2: Final ---
 FROM php:8.2-fpm
 
-# Instalar dependências de execução, incluindo o cliente fastcgi para o healthcheck
 RUN apt-get update && \
     apt-get install -y libpq-dev libpng-dev libonig-dev libxml2-dev libfcgi-bin && \
     docker-php-ext-install pdo pdo_pgsql mbstring exif pcntl bcmath gd && \
     pecl install redis && docker-php-ext-enable redis && \
+    docker-php-ext-enable opcache && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
+
+RUN { \
+        echo 'opcache.enable=1'; \
+        echo 'opcache.memory_consumption=128'; \
+        echo 'opcache.interned_strings_buffer=16'; \
+        echo 'opcache.max_accelerated_files=10000'; \
+        echo 'opcache.validate_timestamps=0'; \
+        echo 'opcache.save_comments=1'; \
+    } > $PHP_INI_DIR/conf.d/opcache-recommended.ini
 
 # Configurações de segurança do PHP
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini" && \

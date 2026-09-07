@@ -16,7 +16,7 @@ import { withSentryConfig } from "@sentry/nextjs";
 
 export default withSentryConfig(nextConfig, {
   silent: true,
-  org: "your-org-name",
+  org: process.env.SENTRY_ORG,
   project: "temperinho-admin",
   widenClientFileUpload: true,
   hideSourceMaps: true,

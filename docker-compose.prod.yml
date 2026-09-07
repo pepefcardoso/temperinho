@@ -1,0 +1,205 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: temperinho-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_DATABASE}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - temperinho_pgdata:/var/lib/postgresql/data
+    networks:
+      - temperinho-internal
+    mem_limit: 512m
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME} -d ${DB_DATABASE}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    logging:
+      driver: "json-file"
+      options: { max-size: "10m", max-file: "3" }
+
+  redis:
+    image: redis:7-alpine
+    container_name: temperinho-redis
+    restart: unless-stopped
+    networks:
+      - temperinho-internal
+    mem_limit: 256m
+    healthcheck:
+      test: ["CMD", "redis-cli", "-h", "127.0.0.1", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    logging:
+      driver: "json-file"
+      options: { max-size: "10m", max-file: "3" }
+
+  meilisearch:
+    image: getmeili/meilisearch:v1.10
+    container_name: temperinho-meilisearch
+    restart: unless-stopped
+    environment:
+      MEILI_MASTER_KEY: ${MEILISEARCH_KEY}
+      MEILI_ENV: production
+      MEILI_NO_ANALYTICS: "true"
+    volumes:
+      - temperinho_meilidata:/meili_data
+    networks:
+      - temperinho-internal
+    mem_limit: 512m
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:7700/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    logging:
+      driver: "json-file"
+      options: { max-size: "10m", max-file: "3" }
+
+  api:
+    build:
+      context: ./apps/api
+    container_name: temperinho-api
+    restart: unless-stopped
+    env_file:
+      - .env.prod
+    depends_on:
+      postgres: { condition: service_healthy }
+      redis: { condition: service_healthy }
+      meilisearch: { condition: service_healthy }
+    networks:
+      - temperinho-internal
+    mem_limit: 512m
+    logging:
+      driver: "json-file"
+      options: { max-size: "10m", max-file: "3" }
+
+  api-nginx:
+    image: nginx:alpine
+    container_name: temperinho-api-nginx
+    restart: unless-stopped
+    volumes:
+      - ./apps/api/docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      api: { condition: service_healthy }
+    networks:
+      - temperinho-internal
+      - traefik-public
+    mem_limit: 128m
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1/api/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+    logging:
+      driver: "json-file"
+      options: { max-size: "10m", max-file: "3" }
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=traefik-public"
+      - "traefik.http.routers.temperinho-api.rule=Host(`api.temperinho.pepefcardoso.dev`)"
+      - "traefik.http.routers.temperinho-api.entrypoints=websecure"
+      - "traefik.http.routers.temperinho-api.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.temperinho-api.middlewares=security-headers@file,temperinho-api-ratelimit"
+      - "traefik.http.services.temperinho-api.loadbalancer.server.port=80"
+      - "traefik.http.middlewares.temperinho-api-ratelimit.ratelimit.average=50"
+      - "traefik.http.middlewares.temperinho-api-ratelimit.ratelimit.burst=100"
+
+  front:
+    build:
+      context: ./apps/front
+      args:
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL}
+        NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL}
+        NEXT_PUBLIC_URL: ${NEXT_PUBLIC_URL}
+        NEXT_PUBLIC_SENTRY_ORG: ${SENTRY_ORG}
+        NEXT_PUBLIC_SENTRY_PROJECT: ${FRONT_SENTRY_PROJECT}
+        NEXT_PUBLIC_SENTRY_DSN: ${FRONT_SENTRY_DSN}
+        SENTRY_AUTH_TOKEN: ${SENTRY_AUTH_TOKEN}
+        NEXT_PUBLIC_GOOGLE_AD_CLIENT: ${NEXT_PUBLIC_GOOGLE_AD_CLIENT}
+        NEXT_PUBLIC_GOOGLE_AD_SLOT_ABOUT_US: ${NEXT_PUBLIC_GOOGLE_AD_SLOT_ABOUT_US}
+        NEXT_PUBLIC_GOOGLE_AD_SLOT_BLOG_DETAILS: ${NEXT_PUBLIC_GOOGLE_AD_SLOT_BLOG_DETAILS}
+        NEXT_PUBLIC_GOOGLE_AD_SLOT_BLOG_LEADERBOARD: ${NEXT_PUBLIC_GOOGLE_AD_SLOT_BLOG_LEADERBOARD}
+        NEXT_PUBLIC_GOOGLE_AD_SLOT_CONTACT_US: ${NEXT_PUBLIC_GOOGLE_AD_SLOT_CONTACT_US}
+        NEXT_PUBLIC_GOOGLE_AD_SLOT_HOMEPAGE_BANNER: ${NEXT_PUBLIC_GOOGLE_AD_SLOT_HOMEPAGE_BANNER}
+        NEXT_PUBLIC_GOOGLE_AD_SLOT_RECIPES_LEADERBOARD: ${NEXT_PUBLIC_GOOGLE_AD_SLOT_RECIPES_LEADERBOARD}
+        NEXT_PUBLIC_GOOGLE_AD_SLOT_RECIPE_DETAIL: ${NEXT_PUBLIC_GOOGLE_AD_SLOT_RECIPE_DETAIL}
+    container_name: temperinho-front
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - NEXT_PUBLIC_SENTRY_DSN=${FRONT_SENTRY_DSN}
+    networks:
+      - traefik-public
+    mem_limit: 512m
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:3000"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    logging:
+      driver: "json-file"
+      options: { max-size: "10m", max-file: "3" }
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.temperinho-front.rule=Host(`temperinho.pepefcardoso.dev`)"
+      - "traefik.http.routers.temperinho-front.entrypoints=websecure"
+      - "traefik.http.routers.temperinho-front.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.temperinho-front.middlewares=temperinho-headers"
+      - "traefik.http.services.temperinho-front.loadbalancer.server.port=3000"
+      - "traefik.http.middlewares.temperinho-headers.headers.stsSeconds=31536000"
+      - "traefik.http.middlewares.temperinho-headers.headers.stsIncludeSubdomains=true"
+      - "traefik.http.middlewares.temperinho-headers.headers.stsPreload=true"
+      - "traefik.http.middlewares.temperinho-headers.headers.customFrameOptionsValue=SAMEORIGIN"
+      - "traefik.http.middlewares.temperinho-headers.headers.contentTypeNosniff=true"
+      - "traefik.http.middlewares.temperinho-headers.headers.browserXssFilter=true"
+      - "traefik.http.middlewares.temperinho-headers.headers.referrerPolicy=strict-origin-when-cross-origin"
+      - "traefik.http.middlewares.temperinho-headers.headers.contentSecurityPolicy=default-src 'self'; img-src 'self' data: https:; script-src 'self' 'unsafe-inline' https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.google.com https://*.doubleclick.net https://*.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://*.google.com https://*.googlesyndication.com https://*.doubleclick.net https://*.sentry.io; frame-src https://*.googlesyndication.com https://*.google.com https://*.doubleclick.net"
+
+  admin:
+    build:
+      context: ./apps/admin
+      args:
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL}
+        NEXT_PUBLIC_URL: ${NEXT_PUBLIC_ADMIN_URL}
+        NEXT_PUBLIC_LARAVEL_BASE_URL: ${NEXT_PUBLIC_LARAVEL_BASE_URL}
+        NEXT_PUBLIC_SENTRY_DSN: ${ADMIN_SENTRY_DSN}
+        SENTRY_ORG: ${SENTRY_ORG}
+        SENTRY_AUTH_TOKEN: ${SENTRY_AUTH_TOKEN}
+    container_name: temperinho-admin
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - NEXT_PUBLIC_LARAVEL_BASE_URL=${NEXT_PUBLIC_LARAVEL_BASE_URL}
+      - NEXT_PUBLIC_SENTRY_DSN=${ADMIN_SENTRY_DSN}
+    networks:
+      - traefik-public
+    mem_limit: 512m
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:3000"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    logging:
+      driver: "json-file"
+      options: { max-size: "10m", max-file: "3" }
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.temperinho-admin.rule=Host(`admin.temperinho.pepefcardoso.dev`)"
+      - "traefik.http.routers.temperinho-admin.entrypoints=websecure"
+      - "traefik.http.routers.temperinho-admin.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.temperinho-admin.middlewares=temperinho-headers"
+      - "traefik.http.services.temperinho-admin.loadbalancer.server.port=3000"
+
+networks:
+  traefik-public:
+    external: true
+  temperinho-internal:
+    driver: bridge
+
+volumes:
+  temperinho_pgdata:
+  temperinho_meilidata:
