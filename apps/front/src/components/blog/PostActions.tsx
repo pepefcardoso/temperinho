@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import type { Post } from '@/types/blog';
 import { useAuth } from '@/context/AuthContext';
-import { toggleFavoritePost } from '@/lib/api/user';
+import { toggleFavoritePost } from '@/lib/api/user.server';
 
 interface PostActionsProps {
     post: Post;

@@ -9,7 +9,7 @@ import { toast } from 'sonner';
 import { Recipe, RecipeDifficulty, RecipeDifficultyLabels } from '@/types/recipe';
 import { cn } from '@/lib/utils';
 import { useAuth } from '@/context/AuthContext';
-import { toggleFavoriteRecipe } from '@/lib/api/user';
+import { toggleFavoriteRecipe } from '@/lib/api/user.server';
 
 const StatIcon = ({ icon: Icon, children }: { icon: React.ElementType; children: React.ReactNode }) => (
     <div className="flex items-center" title={String(children)}>

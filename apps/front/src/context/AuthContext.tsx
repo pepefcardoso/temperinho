@@ -1,11 +1,11 @@
 'use client';
 
 import { createContext, useContext, useState, useEffect, ReactNode, useCallback, useMemo } from 'react';
-import axiosClient from '@/lib/axios';
 import { User } from '@/types/user';
 import { loginUser, registerUser } from '@/lib/api/auth';
 import { LoginData, RegisterData } from '@/types/auth';
-import { setAuthToken, removeAuthToken } from '@/app/actions/auth';
+import { setAuthToken, logoutUser } from '@/app/actions/auth';
+import { getAuthenticatedUserProfile } from '@/lib/api/user.server';
 
 interface AuthContextType {
   user: User | null;
@@ -25,8 +25,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const fetchUser = useCallback(async () => {
     try {
-      const response = await axiosClient.get('/users/me');
-      setUser(response.data.data);
+      const authenticatedUser = await getAuthenticatedUserProfile();
+      setUser(authenticatedUser);
     } catch (error) {
       console.error('Falha ao buscar usuário autenticado.', error);
       setUser(null);
@@ -48,14 +48,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, [fetchUser]);
 
   const logout = useCallback(async () => {
-    try {
-      await axiosClient.post('/auth/logout');
-    } catch (error) {
-      console.error('API de logout falhou.', error);
-    } finally {
-      await removeAuthToken();
-      setUser(null);
-    }
+    await logoutUser();
+    setUser(null);
   }, []);
 
   useEffect(() => {

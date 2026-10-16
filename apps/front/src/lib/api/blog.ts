@@ -118,29 +118,6 @@ export async function getPostById(id: number): Promise<Post> {
   }
 }
 
-export async function createPost(data: FormData): Promise<Post> {
-  const response = await axiosClient.post<{ data: Post }>('/posts', data, {
-    headers: { 'Content-Type': 'multipart/form-data' },
-  });
-  return response.data.data;
-}
-
-export async function updatePost(id: number, data: FormData): Promise<Post> {
-  data.append('_method', 'PUT');
-
-  const response = await axiosClient.post<{ data: Post }>(
-    `/posts/${id}`,
-    data,
-    {
-      headers: { 'Content-Type': 'multipart/form-data' },
-    }
-  );
-  return response.data.data;
-}
-
-export async function deletePost(id: number): Promise<void> {
-  await axiosClient.delete(`/posts/${id}`);
-}
 
 export async function getPostCategories(
   options: GetStandardPaginatedOptions = {}

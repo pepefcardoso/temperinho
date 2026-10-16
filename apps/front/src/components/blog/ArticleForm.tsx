@@ -27,9 +27,8 @@ import { cn } from '@/lib/utils';
 import {
   getPostCategories,
   getPostTopics,
-  createPost,
-  updatePost,
 } from '@/lib/api/blog';
+import { createPost, updatePost } from '@/lib/api/blog.server';
 import { articleSchema } from '@/lib/schemas/article';
 
 type ArticleFormData = z.infer<typeof articleSchema>;

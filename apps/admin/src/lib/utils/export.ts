@@ -11,7 +11,7 @@ export function exportToCsv<T>(data: T[], filename: string) {
   const csvRows = data.map((row) => {
     return headers
       .map((header) => {
-        const val = (row as any)[header];
+        const val = (row as Record<string, unknown>)[header];
         if (val === null || val === undefined) {
           return '""';
         }

@@ -142,35 +142,6 @@ export async function getRecipeById(id: number): Promise<Recipe> {
   }
 }
 
-export async function createRecipe(data: FormData): Promise<Recipe> {
-  const response = await axiosClient.post<{ data: Recipe }>('/recipes', data, {
-    headers: {
-      'Content-Type': 'multipart/form-data',
-    },
-  });
-  return response.data.data;
-}
-
-export async function updateRecipe(
-  id: number,
-  data: FormData
-): Promise<Recipe> {
-  data.append('_method', 'PUT');
-  const response = await axiosClient.post<{ data: Recipe }>(
-    `/recipes/${id}`,
-    data,
-    {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    }
-  );
-  return response.data.data;
-}
-
-export async function deleteRecipe(id: number): Promise<void> {
-  await axiosClient.delete(`/recipes/${id}`);
-}
 
 export async function getRecipeCategories(
   options: GetStandardPaginatedOptions = {}

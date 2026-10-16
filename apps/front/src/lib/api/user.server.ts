@@ -1,34 +1,52 @@
-import axios from 'axios';
-import { cookies } from 'next/headers';
+'use server';
+
+import { createAuthenticatedServerApi } from './serverApi';
 import type { User } from '@/types/user';
 
-const createAuthenticatedServerApi = async () => {
-  const cookieStore = await cookies();
-  const token = cookieStore.get('AUTH_TOKEN')?.value;
-
-  if (!token) {
-    throw new Error('Token de autenticação não encontrado');
-  }
-
-  return axios.create({
-    baseURL: `${process.env.NEXT_PUBLIC_API_URL}`,
-    headers: {
-      'X-Requested-With': 'XMLHttpRequest',
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
-    },
-    timeout: 10000,
-  });
-};
+interface ToggleFavoriteResponse {
+  attached: number[];
+  detached: number[];
+}
 
 export async function getAuthenticatedUserProfile(): Promise<User> {
-  try {
-    const api = await createAuthenticatedServerApi();
-    const response = await api.get('/users/me');
-    return response.data.data;
-  } catch (error) {
-    console.error('Erro ao buscar perfil do usuário:', error);
-    throw error;
-  }
+  const api = await createAuthenticatedServerApi();
+  const response = await api.get('/users/me');
+  return response.data.data;
+}
+
+export async function toggleFavoriteRecipe(
+  recipeId: number
+): Promise<ToggleFavoriteResponse> {
+  const api = await createAuthenticatedServerApi();
+  const response = await api.post<ToggleFavoriteResponse>(
+    '/users/favorites/recipes',
+    { recipe_id: recipeId }
+  );
+  return response.data;
+}
+
+export async function toggleFavoritePost(
+  postId: number
+): Promise<ToggleFavoriteResponse> {
+  const api = await createAuthenticatedServerApi();
+  const response = await api.post<ToggleFavoriteResponse>(
+    '/users/favorites/posts',
+    { post_id: postId }
+  );
+  return response.data;
+}
+
+export async function updateUserProfile(
+  userId: number,
+  data: FormData
+): Promise<User> {
+  data.append('_method', 'PUT');
+  const api = await createAuthenticatedServerApi();
+  const response = await api.post<{ data: User }>(`/users/${userId}`, data);
+  return response.data.data;
+}
+
+export async function deleteAccount(userId: number): Promise<void> {
+  const api = await createAuthenticatedServerApi();
+  await api.delete(`/users/${userId}`);
 }

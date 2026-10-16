@@ -9,7 +9,7 @@ import { cn } from '@/lib/utils';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { toggleFavoriteRecipe } from '@/lib/api/user';
+import { toggleFavoriteRecipe } from '@/lib/api/user.server';
 
 const difficultyStyles: Record<RecipeDifficulty, string> = {
     1: 'text-primary',

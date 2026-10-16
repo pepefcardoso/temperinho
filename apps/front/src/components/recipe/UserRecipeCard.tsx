@@ -19,7 +19,7 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
-import { deleteRecipe } from '@/lib/api/recipe';
+import { deleteRecipe } from '@/lib/api/recipe.server';
 
 interface UserRecipeCardProps {
     recipe: Recipe;

@@ -32,17 +32,19 @@ class CheckPlanLimit
             ], 403);
         }
 
-        $limit = 0;
-        $model = null;
+        $limitFields = [
+            'post' => ['limit' => $plan->max_posts, 'model' => Post::class],
+            'recipe' => ['limit' => $plan->max_recipes, 'model' => Recipe::class],
+        ];
 
-        if ($contentType === 'post') {
-            $limit = $plan->max_posts;
-            $model = Post::class;
-        } elseif ($contentType === 'recipe') {
-            $limit = $plan->max_recipes;
-            $model = Recipe::class;
-        } else {
+        if (!isset($limitFields[$contentType])) {
             return response()->json(['message' => 'Tipo de conteúdo inválido para verificação de limite.'], 500);
+        }
+
+        ['limit' => $limit, 'model' => $model] = $limitFields[$contentType];
+
+        if ($limit === null) {
+            return $next($request); // null = plano sem limite
         }
 
         $currentCount = $model::where('company_id', $company->id)

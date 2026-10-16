@@ -1,4 +1,6 @@
-import axiosClient from '@/lib/axios';
+'use server';
+
+import { createAuthenticatedServerApi } from './serverApi';
 import { Comment, Rating } from '@/types/actions';
 import { InteractableType } from './interactions';
 import axios from 'axios';
@@ -8,7 +10,8 @@ export async function createComment(
   id: number,
   content: string
 ): Promise<Comment> {
-  const response = await axiosClient.post<{ data: Comment }>(
+  const api = await createAuthenticatedServerApi();
+  const response = await api.post<{ data: Comment }>(
     `/${type}/${id}/comments`,
     { content }
   );
@@ -19,15 +22,16 @@ export async function updateComment(
   commentId: number,
   content: string
 ): Promise<Comment> {
-  const response = await axiosClient.put<{ data: Comment }>(
-    `/comments/${commentId}`,
-    { content }
-  );
+  const api = await createAuthenticatedServerApi();
+  const response = await api.put<{ data: Comment }>(`/comments/${commentId}`, {
+    content,
+  });
   return response.data.data;
 }
 
 export async function deleteComment(commentId: number): Promise<void> {
-  await axiosClient.delete(`/comments/${commentId}`);
+  const api = await createAuthenticatedServerApi();
+  await api.delete(`/comments/${commentId}`);
 }
 
 export async function createOrUpdateRating(
@@ -35,10 +39,10 @@ export async function createOrUpdateRating(
   id: number,
   rating: number
 ): Promise<Rating> {
-  const response = await axiosClient.post<{ data: Rating }>(
-    `/${type}/${id}/ratings`,
-    { rating }
-  );
+  const api = await createAuthenticatedServerApi();
+  const response = await api.post<{ data: Rating }>(`/${type}/${id}/ratings`, {
+    rating,
+  });
   return response.data.data;
 }
 
@@ -46,15 +50,13 @@ export async function getUserRating(
   type: InteractableType,
   id: number
 ): Promise<Rating | null> {
+  const api = await createAuthenticatedServerApi();
   try {
-    const response = await axiosClient.get<{ data: Rating }>(
-      `/${type}/${id}/rating`
-    );
+    const response = await api.get<{ data: Rating }>(`/${type}/${id}/rating`);
     return response.data.data;
   } catch (error) {
-    if (axios.isAxiosError(error) && error.response?.status === 404) {
+    if (axios.isAxiosError(error) && error.response?.status === 404)
       return null;
-    }
     throw error;
   }
 }
@@ -63,13 +65,14 @@ export async function updateRating(
   ratingId: number,
   rating: number
 ): Promise<Rating> {
-  const response = await axiosClient.put<{ data: Rating }>(
-    `/ratings/${ratingId}`,
-    { rating }
-  );
+  const api = await createAuthenticatedServerApi();
+  const response = await api.put<{ data: Rating }>(`/ratings/${ratingId}`, {
+    rating,
+  });
   return response.data.data;
 }
 
 export async function deleteRating(ratingId: number): Promise<void> {
-  await axiosClient.delete(`/ratings/${ratingId}`);
+  const api = await createAuthenticatedServerApi();
+  await api.delete(`/ratings/${ratingId}`);
 }

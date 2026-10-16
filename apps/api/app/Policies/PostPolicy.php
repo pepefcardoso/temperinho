@@ -23,7 +23,11 @@ class PostPolicy
 
     public function create(User $user): bool
     {
-        return true;
+        if ($user->isInternal()) {
+            return true;
+        }
+
+        return $user->company?->subscriptions()->whereIsActive()->exists() ?? false;
     }
 
     public function update(User $user, Post $post): bool

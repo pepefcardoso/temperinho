@@ -10,7 +10,7 @@ import { Save, Loader2 } from 'lucide-react';
 import axios from 'axios';
 import { Recipe } from '@/types/recipe';
 import { Button } from '@/components/ui/button';
-import { createRecipe, updateRecipe } from '@/lib/api/recipe';
+import { createRecipe, updateRecipe } from '@/lib/api/recipe.server';
 import { RecipeFormBasicInfo } from './RecipeFormBasicInfo';
 import { RecipeFormImage } from './RecipeFormImage';
 import { RecipeFormDiets } from './RecipeFormDiets';

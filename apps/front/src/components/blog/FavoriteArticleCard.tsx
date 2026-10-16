@@ -8,7 +8,7 @@ import { formatDate } from '@/lib/dateUtils';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { toggleFavoritePost } from '@/lib/api/user';
+import { toggleFavoritePost } from '@/lib/api/user.server';
 
 interface FavoriteArticleCardProps {
     article: Post;

@@ -21,7 +21,7 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
-import { deletePost } from '@/lib/api/blog';
+import { deletePost } from '@/lib/api/blog.server';
 
 interface UserArticleCardProps {
     article: Post;

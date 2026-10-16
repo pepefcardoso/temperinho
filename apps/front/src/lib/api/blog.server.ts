@@ -1,21 +1,8 @@
-import axios from "axios";
-import { cookies } from "next/headers";
-import type { PaginatedResponse } from "@/types/api";
-import type { Post } from "@/types/blog";
+'use server';
 
-const createAuthenticatedServerApi = async () => {
-  const cookieStore = await cookies();
-  const token = cookieStore.get("AUTH_TOKEN")?.value;
-
-  return axios.create({
-    baseURL: process.env.NEXT_PUBLIC_API_URL,
-    headers: {
-      "X-Requested-With": "XMLHttpRequest",
-      Accept: "application/json",
-      ...(token && { Authorization: `Bearer ${token}` }),
-    },
-  });
-};
+import { createAuthenticatedServerApi } from './serverApi';
+import type { PaginatedResponse } from '@/types/api';
+import type { Post } from '@/types/blog';
 
 interface GetMyPostsParams {
   search?: string;
@@ -43,7 +30,7 @@ export async function getMyPosts({
     params.category_id = categoryId;
   }
 
-  const response = await api.get<PaginatedResponse<Post>>("/posts/my", {
+  const response = await api.get<PaginatedResponse<Post>>('/posts/my', {
     params,
   });
   return response.data;
@@ -74,8 +61,26 @@ export async function getFavoritePosts({
     params.category_id = categoryId;
   }
 
-  const response = await api.get<PaginatedResponse<Post>>("/posts/favorites", {
+  const response = await api.get<PaginatedResponse<Post>>('/posts/favorites', {
     params,
   });
   return response.data;
+}
+
+export async function createPost(data: FormData): Promise<Post> {
+  const api = await createAuthenticatedServerApi();
+  const response = await api.post<{ data: Post }>('/posts', data);
+  return response.data.data;
+}
+
+export async function updatePost(id: number, data: FormData): Promise<Post> {
+  data.append('_method', 'PUT');
+  const api = await createAuthenticatedServerApi();
+  const response = await api.post<{ data: Post }>(`/posts/${id}`, data);
+  return response.data.data;
+}
+
+export async function deletePost(id: number): Promise<void> {
+  const api = await createAuthenticatedServerApi();
+  await api.delete(`/posts/${id}`);
 }

@@ -6,7 +6,7 @@ import { ChefHat, Clock, Users, Star, Printer, Share2, Bookmark } from 'lucide-r
 import { toast } from 'sonner';
 import { type Recipe, RecipeDifficultyLabels, type RecipeDifficulty } from '@/types/recipe';
 import { useAuth } from '@/context/AuthContext';
-import { toggleFavoriteRecipe } from '@/lib/api/user';
+import { toggleFavoriteRecipe } from '@/lib/api/user.server';
 import { createOrUpdateRating, getUserRating } from '@/lib/api/interactions.server';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';

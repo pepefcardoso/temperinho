@@ -21,7 +21,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { updateUserProfile } from '@/lib/api/user';
+import { updateUserProfile } from '@/lib/api/user.server';
 import { profileSchema } from '@/lib/schemas/user';
 
 type ProfileFormData = z.infer<typeof profileSchema>;

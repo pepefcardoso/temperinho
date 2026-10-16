@@ -1,20 +1,8 @@
+'use server';
+
 import axios from 'axios';
-import { cookies } from 'next/headers';
+import { createAuthenticatedServerApi } from './serverApi';
 import type { Company } from '@/types/company';
-
-const createAuthenticatedServerApi = async () => {
-  const cookieStore = await cookies();
-  const token = cookieStore.get('AUTH_TOKEN')?.value;
-
-  return axios.create({
-    baseURL: process.env.NEXT_PUBLIC_API_URL,
-    headers: {
-      'X-Requested-With': 'XMLHttpRequest',
-      Accept: 'application/json',
-      ...(token && { Authorization: `Bearer ${token}` }),
-    },
-  });
-};
 
 export async function getMyCompany(): Promise<Company | null> {
   try {
@@ -27,4 +15,31 @@ export async function getMyCompany(): Promise<Company | null> {
     }
     throw error;
   }
+}
+
+export async function getCompany(id: number): Promise<Company> {
+  const api = await createAuthenticatedServerApi();
+  const response = await api.get<{ data: Company }>(`/companies/${id}`);
+  return response.data.data;
+}
+
+export async function createCompany(data: FormData): Promise<Company> {
+  const api = await createAuthenticatedServerApi();
+  const response = await api.post<{ data: Company }>('/companies', data);
+  return response.data.data;
+}
+
+export async function updateCompany(
+  id: number,
+  data: FormData
+): Promise<Company> {
+  data.append('_method', 'PUT');
+  const api = await createAuthenticatedServerApi();
+  const response = await api.post<{ data: Company }>(`/companies/${id}`, data);
+  return response.data.data;
+}
+
+export async function deleteCompany(id: number): Promise<void> {
+  const api = await createAuthenticatedServerApi();
+  await api.delete(`/companies/${id}`);
 }

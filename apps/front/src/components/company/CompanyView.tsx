@@ -24,7 +24,7 @@ import {
     AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
 import { CompanyForm } from './CompanyForm';
-import { deleteCompany } from '@/lib/api/company';
+import { deleteCompany } from '@/lib/api/company.server';
 
 interface CompanyViewProps {
     company: Company;
