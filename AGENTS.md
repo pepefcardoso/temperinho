@@ -17,6 +17,11 @@ apps/
 
 ## Commands
 
+- install: pnpm install
+- build: pnpm build
+- lint: pnpm lint
+- test: pnpm test
+
 Run from repo root unless noted.
 
 ```bash
