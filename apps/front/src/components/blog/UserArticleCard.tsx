@@ -63,7 +63,14 @@ export function UserArticleCard({ article, onDelete }: UserArticleCardProps) {
                             {article.category && (
                                 <Badge variant="secondary">{article.category.name}</Badge>
                             )}
+                            {article.status === 'pending' && <Badge variant="secondary">Em análise</Badge>}
+                            {article.status === 'rejected' && <Badge variant="destructive">Rejeitado</Badge>}
                         </div>
+                        {article.status === 'rejected' && article.rejection_reason && (
+                            <p className="text-sm text-destructive mb-3">
+                                <strong>Motivo:</strong> {article.rejection_reason}
+                            </p>
+                        )}
                         <p className="text-muted-foreground text-sm mb-3 line-clamp-2">{article.summary}</p>
                         <div className="flex items-center flex-wrap text-xs text-muted-foreground gap-x-4 gap-y-1">
                             <div className="flex items-center gap-1">

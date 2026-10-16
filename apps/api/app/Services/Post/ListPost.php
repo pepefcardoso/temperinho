@@ -29,8 +29,25 @@ class ListPost
         return $query;
     }
 
+    protected function applyBaseScope($query)
+    {
+        $user = auth('sanctum')->user();
+
+        if ($user && $user->isInternal()) {
+            return $query;
+        }
+
+        return $query->where('status', Post::STATUS_PUBLISHED);
+    }
+
     protected function getCustomSearchFilters(array $filters): array
     {
-        return [];
+        $user = auth('sanctum')->user();
+
+        if ($user && $user->isInternal()) {
+            return [];
+        }
+
+        return ['status = "' . Post::STATUS_PUBLISHED . '"'];
     }
 }

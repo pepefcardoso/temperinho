@@ -27,4 +27,7 @@ export interface Post {
   is_favorited?: boolean;
   created_at: string;
   updated_at?: string;
+  status?: 'pending' | 'published' | 'rejected';
+  rejection_reason?: string | null;
+  company_id?: number | null;
 }

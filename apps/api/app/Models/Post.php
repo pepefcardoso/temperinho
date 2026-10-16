@@ -17,6 +17,10 @@ class Post extends Model
 
     public const VALID_SORT_COLUMNS = ['title', 'created_at'];
 
+    public const STATUS_PENDING = 'pending';
+    public const STATUS_PUBLISHED = 'published';
+    public const STATUS_REJECTED = 'rejected';
+
     protected $fillable = [
         'title',
         'summary',
@@ -24,6 +28,8 @@ class Post extends Model
         'category_id',
         'user_id',
         'company_id',
+        'status',
+        'rejection_reason',
     ];
 
     public function shouldBeSearchable(): bool
@@ -46,6 +52,7 @@ class Post extends Model
             'category_id' => $this->category_id,
             'user_id' => $this->user_id,
             'company_id' => $this->company_id,
+            'status' => $this->status,
             'created_at' => $this->created_at->timestamp,
             'updated_at' => $this->updated_at->timestamp,
         ];
@@ -58,7 +65,7 @@ class Post extends Model
 
     public function filterableAttributes(): array
     {
-        return ['category_id', 'user_id'];
+        return ['category_id', 'user_id', 'status'];
     }
 
     public function sortableAttributes(): array

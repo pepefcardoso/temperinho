@@ -22,6 +22,8 @@ class PostCollectionResource extends JsonResource
             'average_rating' => round($this->whenAggregated('ratings', 'rating', 'avg') ?? 0, 2),
             'ratings_count' => $this->whenCounted('ratings'),
             'is_favorited' => (bool) ($this->is_favorited ?? false),
+            'status' => $this->status,
+            'rejection_reason' => $this->rejection_reason,
             'created_at' => $this->created_at->toIso8601String(),
         ];
     }

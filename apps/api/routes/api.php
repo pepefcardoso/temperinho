@@ -96,6 +96,8 @@ Route::middleware(['auth:sanctum', 'throttle:api'])->group(function () {
     Route::apiResource('images', ImageController::class)->except(['index', 'show']);
 
     Route::post('/posts', [PostController::class, 'store'])->middleware('plan.limit:post');
+    Route::patch('/posts/{post}/approve', [PostController::class, 'approve']);
+    Route::patch('/posts/{post}/reject', [PostController::class, 'reject']);
     Route::apiResource('posts', PostController::class)->except(['index', 'show', 'store']);
 
     Route::apiResource('post-categories', PostCategoryController::class)->except(['index', 'show']);

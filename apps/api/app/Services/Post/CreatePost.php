@@ -32,6 +32,7 @@ class CreatePost
             $post = DB::transaction(function () use ($user, $data, $imageData) {
                 $data['user_id'] = $user->id;
                 $data['company_id'] = $user->company ? $user->company->id : null;
+                $data['status'] = $data['company_id'] ? Post::STATUS_PENDING : Post::STATUS_PUBLISHED;
 
                 $post = Post::create($data);
 

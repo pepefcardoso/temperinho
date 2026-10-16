@@ -62,7 +62,10 @@ export function BlogPostCard({ post, variant = "default", className }: BlogPostC
                     {variant === 'featured' ? (
                         <Badge className="w-fit">Destaque</Badge>
                     ) : (
-                        <Badge variant="secondary" className="w-fit mb-2">{post.category?.name ?? 'Sem Categoria'}</Badge>
+                        <div className="flex items-center gap-2 mb-2">
+                            <Badge variant="secondary" className="w-fit">{post.category?.name ?? 'Sem Categoria'}</Badge>
+                            {post.company_id && <Badge variant="outline" className="w-fit">Patrocinado</Badge>}
+                        </div>
                     )}
 
                     <h3 className={cn(

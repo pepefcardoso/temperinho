@@ -27,6 +27,8 @@ class PostResource extends JsonResource
             'author' => new AuthorResource($this->whenLoaded('user')),
             'category' => new PostCategoryResource($this->whenLoaded('category')),
             'topics' => PostTopicResource::collection($this->whenLoaded('topics')),
+            'status' => $this->status,
+            'rejection_reason' => $this->rejection_reason,
             'created_at' => $this->created_at->toIso8601String(),
             'updated_at' => $this->updated_at->toIso8601String(),
         ];

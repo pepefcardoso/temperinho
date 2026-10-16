@@ -23,6 +23,8 @@ type PostBase = {
   is_favorited: boolean;
   created_at: string;
   company_id?: number | null;
+  status: 'pending' | 'published' | 'rejected';
+  rejection_reason?: string | null;
 };
 
 export type PostCollectionItem = PostBase;

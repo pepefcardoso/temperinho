@@ -57,12 +57,18 @@ trait BaseListService
         return $this->addRelationsAndPaginate($query, $perPage);
     }
 
+    protected function applyBaseScope($query)
+    {
+        return $query;
+    }
+
     protected function traditionalQuery(array $filters, int $perPage)
     {
         $modelClass = $this->getModelClass();
         $query = $modelClass::query();
 
         $query->filter($filters);
+        $query = $this->applyBaseScope($query);
 
         $orderBy = $filters['order_by'] ?? 'created_at';
         $orderDirection = $filters['order_direction'] ?? 'desc';

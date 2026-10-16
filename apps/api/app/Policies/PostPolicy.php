@@ -2,8 +2,10 @@
 
 namespace App\Policies;
 
+use App\Enum\RolesEnum;
 use App\Models\Post;
 use App\Models\User;
+
 class PostPolicy
 {
     public function viewAny(?User $user)
@@ -11,9 +13,27 @@ class PostPolicy
         return true;
     }
 
-    public function view(?User $user, Post $post)
+    public function view(?User $user, Post $post): bool
     {
-        return true;
+        if ($post->status === Post::STATUS_PUBLISHED) {
+            return true;
+        }
+
+        if (!$user) {
+            return false;
+        }
+
+        return $user->isInternal() || $user->id === $post->user_id;
+    }
+
+    public function approve(User $user, Post $post): bool
+    {
+        return $user->role === RolesEnum::ADMIN;
+    }
+
+    public function reject(User $user, Post $post): bool
+    {
+        return $user->role === RolesEnum::ADMIN;
     }
 
     public function viewFavorites(User $user)
