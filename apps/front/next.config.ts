@@ -1,5 +1,7 @@
 
 
+import { withSentryConfig } from '@sentry/nextjs';
+
 const securityHeaders = [
   {
     key: 'Strict-Transport-Security',
@@ -47,4 +49,13 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+export default withSentryConfig(nextConfig, {
+  org: process.env.SENTRY_ORG,
+  project: process.env.SENTRY_PROJECT_FRONT,
+  authToken: process.env.SENTRY_AUTH_TOKEN,
+  silent: true,
+  widenClientFileUpload: true,
+  tunnelRoute: '/monitoring',
+  disableLogger: true,
+  automaticVercelMonitors: false,
+});

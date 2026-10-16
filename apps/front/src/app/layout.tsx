@@ -45,6 +45,14 @@ export default function RootLayout({
           src="https://cdn-cookieyes.com/client_data/482e3ab6588d9ec52fc08147/script.js"
           strategy="beforeInteractive"
         />
+        {process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN && (
+          <Script
+            defer
+            data-domain={process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN}
+            src="https://plausible.io/js/script.js"
+            strategy="afterInteractive"
+          />
+        )}
       </head>
       <body className={cn(
         "min-h-screen bg-background font-sans antialiased",

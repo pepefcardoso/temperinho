@@ -10,6 +10,7 @@ import { createOrUpdateRating, getUserRating } from '@/lib/api/interactions.serv
 import { formatDate } from '@/lib/dateUtils';
 import { PostActions } from '@/components/blog/PostActions';
 import { StarRating } from '@/components/ui/StarRating';
+import { Badge } from '@/components/ui/badge';
 
 interface BlogPostHeaderProps {
     article: Post;
@@ -76,9 +77,12 @@ export function BlogPostHeader({ article, readTime }: BlogPostHeaderProps) {
                 </ol>
             </nav>
             <div className="mb-6">
-                <h1 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-4 leading-tight">
-                    {article.title}
-                </h1>
+                <div className="flex items-center gap-3 mb-4">
+                    <h1 className="text-3xl md:text-4xl font-display font-bold text-foreground leading-tight">
+                        {article.title}
+                    </h1>
+                    {article.company_id && <Badge variant="outline">Patrocinado</Badge>}
+                </div>
                 <p className="text-lg text-muted-foreground mb-6 leading-relaxed">{article.summary}</p>
                 <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-foreground mb-6">
                     <MetaItem icon={User}>{article.author?.name ?? 'Autor'}</MetaItem>

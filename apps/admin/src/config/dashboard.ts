@@ -88,6 +88,11 @@ export const navGroups: NavGroup[] = [
         icon: "Star",
       },
       {
+        title: "Denúncias",
+        href: "/dashboard/reports",
+        icon: "Flag",
+      },
+      {
         title: "Contatos",
         href: "/dashboard/contacts",
         icon: "Contact",

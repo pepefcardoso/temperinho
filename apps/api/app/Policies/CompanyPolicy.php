@@ -19,7 +19,7 @@ class CompanyPolicy
 
     public function create(User $user): bool
     {
-        return $user->isInternal() && $user->company()->doesntExist();
+        return $user->company()->doesntExist();
     }
 
     public function update(User $user, Company $company): bool
