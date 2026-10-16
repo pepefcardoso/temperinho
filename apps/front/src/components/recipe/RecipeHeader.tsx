@@ -12,6 +12,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { StarRating } from '@/components/ui/StarRating';
 import { cn } from '@/lib/utils';
+import { ReportDialog } from '@/components/shared/ReportDialog';
 import AdBanner from '../marketing/AdBanner';
 
 const StatItem = ({ icon: Icon, value, label, iconClassName }: { icon: React.ElementType, value: string | number, label: string, iconClassName?: string }) => (
@@ -196,6 +197,7 @@ export function RecipeHeader({ recipe }: RecipeHeaderProps) {
                             </Button>
                             <Button variant="outline" onClick={handleShare}><Share2 className="h-4 w-4 mr-2" />Compartilhar</Button>
                             <Button variant="outline" onClick={handlePrint}><Printer className="h-4 w-4 mr-2" />Imprimir</Button>
+                            {user && <ReportDialog type="recipes" id={recipe.id} triggerLabel="Denunciar" triggerVariant="outline" />}
                         </div>
                     </div>
                 </div>

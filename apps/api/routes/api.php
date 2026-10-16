@@ -20,6 +20,7 @@ use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PaymentMethodController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 
 Route::controller(AuthController::class)->prefix('auth')->middleware('throttle:auth')->group(function () {
@@ -123,6 +124,12 @@ Route::middleware(['auth:sanctum', 'throttle:api'])->group(function () {
         ->whereNumber('rateableId');
     Route::put('/ratings/{rating}', [RatingController::class, 'update']);
     Route::delete('/ratings/{rating}', [RatingController::class, 'destroy']);
+
+    Route::post('/{type}/{reportableId}/reports', [ReportController::class, 'store'])
+        ->whereIn('type', ['comments', 'ratings', 'recipes'])
+        ->whereNumber('reportableId');
+    Route::get('/reports', [ReportController::class, 'index']);
+    Route::patch('/reports/{report}/review', [ReportController::class, 'review']);
 
     Route::get('/contact', [CustomerContactController::class, 'index']);
     Route::get('/contact/{customer_contact}', [CustomerContactController::class, 'show']);

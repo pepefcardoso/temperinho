@@ -22,6 +22,7 @@ use App\Models\Payment;
 use App\Models\Subscription;
 use App\Models\PaymentMethod;
 use App\Models\Image;
+use App\Models\Report;
 use App\Policies\CommentPolicy;
 use App\Policies\CustomerContactPolicy;
 use App\Policies\ImagePolicy;
@@ -42,6 +43,7 @@ use App\Policies\PlanPolicy;
 use App\Policies\SubscriptionPolicy;
 use App\Policies\PaymentPolicy;
 use App\Policies\PaymentMethodPolicy;
+use App\Policies\ReportPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -72,6 +74,7 @@ class AuthServiceProvider extends ServiceProvider
         Subscription::class => SubscriptionPolicy::class,
         Payment::class => PaymentPolicy::class,
         PaymentMethod::class => PaymentMethodPolicy::class,
+        Report::class => ReportPolicy::class,
     ];
 
     /**

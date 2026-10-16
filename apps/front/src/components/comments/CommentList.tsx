@@ -18,6 +18,7 @@ import { formatDistanceToNow } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { getComments, InteractableType } from '@/lib/api/interactions';
 import { deleteComment, updateComment } from '@/lib/api/interactions.server';
+import { ReportDialog } from '@/components/shared/ReportDialog';
 import { AxiosError } from 'axios';
 interface CommentListProps {
     type: InteractableType;
@@ -123,7 +124,7 @@ export function CommentList({ type, id }: CommentListProps) {
                                     {formatDistanceToNow(new Date(comment.created_at), { addSuffix: true, locale: ptBR })}
                                 </p>
                             </div>
-                            {isAuthenticated && user?.id === comment.author.id && (
+                            {isAuthenticated && user?.id === comment.author.id ? (
                                 <DropdownMenu>
                                     <DropdownMenuTrigger asChild>
                                         <Button variant="ghost" size="icon" disabled={isPending}>
@@ -141,7 +142,9 @@ export function CommentList({ type, id }: CommentListProps) {
                                         </DropdownMenuItem>
                                     </DropdownMenuContent>
                                 </DropdownMenu>
-                            )}
+                            ) : isAuthenticated ? (
+                                <ReportDialog type="comments" id={comment.id} iconOnly triggerVariant="ghost" />
+                            ) : null}
                         </div>
                         {editingCommentId === comment.id ? (
                             <div className="mt-2 space-y-2">
