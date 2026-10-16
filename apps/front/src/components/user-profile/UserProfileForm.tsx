@@ -13,7 +13,9 @@ import {
   User as UserIcon,
   Eye,
   EyeOff,
+  Trash2,
 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import type { User } from '@/types/user';
 import { Button } from '@/components/ui/button';
@@ -21,7 +23,19 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { updateUserProfile } from '@/lib/api/user.server';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
+import { updateUserProfile, deleteAccount } from '@/lib/api/user.server';
+import { useAuth } from '@/context/AuthContext';
 import { profileSchema } from '@/lib/schemas/user';
 
 type ProfileFormData = z.infer<typeof profileSchema>;
@@ -32,6 +46,9 @@ interface UserProfileFormProps {
 
 export function UserProfileForm({ user }: UserProfileFormProps) {
   const [isEditing, setIsEditing] = React.useState(false);
+  const [isDeleting, setIsDeleting] = React.useState(false);
+  const router = useRouter();
+  const { logout } = useAuth();
   const [avatarFile, setAvatarFile] = React.useState<File | null>(null);
   const [avatarPreview, setAvatarPreview] = React.useState<string | null>(
     user.image?.url ?? null
@@ -39,6 +56,20 @@ export function UserProfileForm({ user }: UserProfileFormProps) {
   const [showPassword, setShowPassword] = React.useState(false);
 
   const editButtonRef = React.useRef<HTMLButtonElement>(null);
+
+  const handleDeleteAccount = async () => {
+    setIsDeleting(true);
+    try {
+      await deleteAccount(user.id);
+      toast.success('Sua conta foi removida.');
+      await logout();
+      router.push('/');
+    } catch (error) {
+      console.error('Erro ao excluir conta:', error);
+      toast.error('Não foi possível excluir sua conta. Tente novamente.');
+      setIsDeleting(false);
+    }
+  };
 
   const {
     register,
@@ -314,6 +345,48 @@ export function UserProfileForm({ user }: UserProfileFormProps) {
               </CardContent>
             </Card>
           )}
+
+          <Card className="border-destructive">
+            <CardHeader>
+              <CardTitle className="text-destructive">Excluir Conta</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm text-muted-foreground mb-4">
+                Isso remove permanentemente seus dados pessoais (nome, email, telefone,
+                foto). Suas receitas, artigos e comentários publicados continuam no site,
+                atribuídos a &quot;Usuário Removido&quot;. Essa ação não pode ser
+                desfeita.
+              </p>
+              <AlertDialog>
+                <AlertDialogTrigger asChild>
+                  <Button type="button" variant="destructive">
+                    <Trash2 className="h-4 w-4 mr-2" />
+                    Excluir minha conta
+                  </Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>Tem certeza?</AlertDialogTitle>
+                    <AlertDialogDescription>
+                      Seus dados pessoais serão removidos permanentemente e você será
+                      desconectado. Essa ação não pode ser desfeita.
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                    <AlertDialogAction
+                      onClick={handleDeleteAccount}
+                      disabled={isDeleting}
+                      className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                    >
+                      {isDeleting && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}
+                      Sim, excluir minha conta
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </form>

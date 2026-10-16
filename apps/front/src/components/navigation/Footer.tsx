@@ -149,6 +149,11 @@ export default function Footer() {
                         </a>
                     </div>
                 </div>
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8 pb-8">
+                    <p className="text-muted-foreground/70 text-xs max-w-3xl mx-auto md:mx-0">
+                        As informações sobre dietas e restrições alimentares são fornecidas pelos próprios usuários e não substituem orientação médica ou nutricional profissional. Consulte um especialista antes de fazer mudanças na sua alimentação.
+                    </p>
+                </div>
             </div>
         </footer>
     );

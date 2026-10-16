@@ -42,6 +42,10 @@ class UserResource extends JsonResource
                 $auth && $auth->can('view', $this->resource),
                 $this->birthday
             ),
+            'deleted_at' => $this->when(
+                $auth && $auth->can('view', $this->resource),
+                $this->deleted_at?->toIso8601String()
+            ),
             'created_at' => $this->created_at?->toIso8601String(),
         ];
     }

@@ -136,6 +136,11 @@ export function RecipeHeader({ recipe }: RecipeHeaderProps) {
                         <div className="flex flex-wrap gap-2">
                             {recipe.diets?.map((diet) => <Badge key={diet.id} variant="secondary">{diet.name}</Badge>)}
                         </div>
+                        {recipe.diets && recipe.diets.length > 0 && (
+                            <p className="text-xs text-muted-foreground">
+                                As informações de dieta são fornecidas pelo autor da receita e não substituem orientação médica profissional.
+                            </p>
+                        )}
 
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                             <StatItem icon={Clock} value={`${recipe.time} min`} label="Total" />

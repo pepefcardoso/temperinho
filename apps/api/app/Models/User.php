@@ -21,13 +21,14 @@ class User extends Authenticatable
     use HasFactory, Notifiable, HasApiTokens;
 
     protected $fillable = [
-        'name', 'email', 'birthday', 'phone', 'password', 'role', 'provider', 'provider_id',
+        'name', 'email', 'birthday', 'phone', 'password', 'role', 'provider', 'provider_id', 'deleted_at',
     ];
 
     protected $hidden = ['password', 'remember_token'];
 
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'deleted_at' => 'datetime',
         'password' => 'hashed',
         'role' => RolesEnum::class,
     ];
@@ -109,5 +110,10 @@ class User extends Authenticatable
     public function company(): HasOne
     {
         return $this->hasOne(Company::class);
+    }
+
+    public function isDeleted(): bool
+    {
+        return !is_null($this->deleted_at);
     }
 }
