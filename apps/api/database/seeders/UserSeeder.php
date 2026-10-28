@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
                 'birthday' => env('ADMIN_BIRTHDAY') ?: '1990-01-01',
                 'phone' => env('ADMIN_PHONE') ?: '99999999999',
                 'password' => Hash::make(env('ADMIN_PASSWORD') ?: 'password'),
-                'role' => env('ADMIN_ROLE') ?: RolesEnum::ADMIN->value,
+                'role' => env('ADMIN_ROLE') ? (int) env('ADMIN_ROLE') : RolesEnum::ADMIN,
                 'email_verified_at' => now(),
             ]
         );
