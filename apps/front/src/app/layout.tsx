@@ -1,6 +1,7 @@
 import '@/lib/env';
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
+import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Toaster } from "sonner";
 import { AuthProvider } from "@/context/AuthContext";
