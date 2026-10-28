@@ -1,0 +1,11 @@
+.git
+.agents
+apps/front/.next
+apps/front/node_modules
+apps/admin/.next
+apps/admin/node_modules
+apps/api/vendor
+apps/api/storage/logs
+node_modules
+.turbo
+*.log
