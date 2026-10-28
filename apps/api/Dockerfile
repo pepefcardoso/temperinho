@@ -60,7 +60,7 @@ RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache && \
 
 # Healthcheck corrigido para o FPM que verifica a rota /api/health
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-    CMD SCRIPT_NAME=/api/health SCRIPT_FILENAME=/var/www/public/index.php REQUEST_METHOD=GET cgi-fcgi -connect 127.0.0.1:9000 | grep -q "ok" || exit 1
+    CMD REMOTE_ADDR=127.0.0.1 REQUEST_URI=/api/health SCRIPT_NAME=/index.php SCRIPT_FILENAME=/var/www/public/index.php REQUEST_METHOD=GET cgi-fcgi -bind -connect 127.0.0.1:9000 | grep -q "ok" || exit 1
 
 EXPOSE 9000
 CMD ["php-fpm"]

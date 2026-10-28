@@ -73,6 +73,11 @@ services:
     networks:
       - temperinho-internal
     mem_limit: 512m
+    healthcheck:
+      test: ["CMD-SHELL", "REMOTE_ADDR=127.0.0.1 REQUEST_URI=/api/health SCRIPT_NAME=/index.php SCRIPT_FILENAME=/var/www/public/index.php REQUEST_METHOD=GET cgi-fcgi -bind -connect 127.0.0.1:9000 | grep -q 'ok' || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
     logging:
       driver: "json-file"
       options: { max-size: "10m", max-file: "3" }
